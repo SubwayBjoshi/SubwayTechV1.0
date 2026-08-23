@@ -1,355 +1,978 @@
-
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
+<meta charset="utf-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
->
+  name="viewport"
+  content="width=device-width,initial-scale=1">
 
 <title>
-Sales Analytics | Subway Insights
+  Sales Analytics | Subway Insights
 </title>
 
 
 <style>
 
-:root {
+:root{
 
-    --green:#006747;
-    --dark:#004f35;
-    --yellow:#ffc72c;
+  --g950:#034225;
+  --g900:#055332;
+  --g800:#076238;
+  --g700:#087844;
+  --g600:#0c8d4f;
 
-    --bg:#edf5ef;
-    --card:#ffffff;
+  --gold:#f4c430;
 
-    --text:#17221b;
-    --muted:#68736b;
+  --bg:#edf5ef;
+  --card:#ffffff;
 
-    --border:#d2e2d7;
+  --text:#17221b;
+  --muted:#6b776f;
 
-    --danger:#b42318;
+  --line:#d6e4da;
 
-}
+  --danger:#b42318;
+  --success:#067647;
 
-* {
-
-    box-sizing:
-        border-box;
-
-}
-
-body {
-
-    margin:0;
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    background:
-        var(--bg);
-
-    color:
-        var(--text);
+  --shadow:
+    0 8px 24px rgba(3,66,37,.06);
 
 }
 
-header {
 
-    background:
-        var(--green);
+*{
+  box-sizing:border-box;
+}
 
-    color:white;
 
-    padding:
-        18px 30px;
+body{
+
+  margin:0;
+
+  font-family:
+    Inter,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  background:var(--bg);
+
+  color:var(--text);
 
 }
 
-.header-row {
 
-    max-width:
-        1600px;
+/* =========================================================
+   HEADER
+   ========================================================= */
 
-    margin:auto;
+header{
 
-    display:flex;
+  background:
+    linear-gradient(
+      120deg,
+      var(--g950),
+      var(--g800)
+    );
 
-    align-items:center;
+  color:#fff;
 
-    gap:25px;
+  padding:
+    15px
+    24px;
 
-}
+  display:flex;
 
-.header-row a {
+  align-items:center;
 
-    color:white;
+  gap:18px;
 
-    text-decoration:none;
+  border-bottom:
+    3px solid var(--gold);
 
-    font-weight:bold;
+  position:sticky;
 
-}
+  top:0;
 
-main {
-
-    max-width:
-        1600px;
-
-    margin:auto;
-
-    padding:
-        30px;
-
-}
-
-.panel {
-
-    background:
-        var(--card);
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:
-        15px;
-
-    padding:
-        20px;
-
-    margin-bottom:
-        20px;
+  z-index:100;
 
 }
 
-.filter-grid {
 
-    display:grid;
+header a{
+
+  color:#fff;
+
+  text-decoration:none;
+
+  font-weight:700;
+
+}
+
+
+.brand{
+
+  background:#fff;
+
+  color:var(--g800);
+
+  padding:
+    8px
+    14px;
+
+  border-radius:9px;
+
+  font-weight:900;
+
+}
+
+
+.title{
+
+  font-size:22px;
+
+  font-weight:800;
+
+  flex:1;
+
+}
+
+
+.user{
+
+  font-size:13px;
+
+  opacity:.9;
+
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+main{
+
+  max-width:1600px;
+
+  margin:auto;
+
+  padding:22px;
+
+}
+
+
+.card{
+
+  background:var(--card);
+
+  border:
+    1px solid var(--line);
+
+  border-radius:15px;
+
+  box-shadow:var(--shadow);
+
+}
+
+
+/* =========================================================
+   ASK ANYTHING
+   ========================================================= */
+
+.ask-panel{
+
+  padding:16px;
+
+  margin-bottom:14px;
+
+}
+
+
+.ask-title{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:10px;
+
+}
+
+
+.ask-title h2{
+
+  margin:0;
+
+  font-size:16px;
+
+}
+
+
+.ask-box{
+
+  display:flex;
+
+  gap:9px;
+
+}
+
+
+.ask-box input{
+
+  flex:1;
+
+  height:46px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:11px;
+
+  padding:
+    0
+    15px;
+
+  font-size:14px;
+
+  outline:none;
+
+}
+
+
+.ask-box input:focus{
+
+  border-color:var(--g600);
+
+  box-shadow:
+    0 0 0 3px rgba(12,141,79,.10);
+
+}
+
+
+button{
+
+  height:42px;
+
+  border:0;
+
+  border-radius:9px;
+
+  padding:
+    0
+    14px;
+
+  background:var(--g800);
+
+  color:#fff;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+}
+
+
+button:hover{
+
+  background:var(--g700);
+
+}
+
+
+button.secondary{
+
+  background:#fff;
+
+  color:var(--g800);
+
+  border:
+    1px solid var(--line);
+
+}
+
+
+.ask-box button{
+
+  height:46px;
+
+  min-width:90px;
+
+}
+
+
+.ask-help{
+
+  margin-top:9px;
+
+  font-size:12px;
+
+  color:var(--muted);
+
+}
+
+
+.ask-result{
+
+  margin-top:9px;
+
+  display:none;
+
+  padding:10px;
+
+  border-radius:9px;
+
+  background:#f6faf7;
+
+  border:
+    1px solid var(--line);
+
+  font-size:12px;
+
+  color:var(--g800);
+
+}
+
+
+/* =========================================================
+   FILTERS
+   ========================================================= */
+
+.filters{
+
+  padding:15px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(6,minmax(150px,1fr));
+
+  gap:10px;
+
+}
+
+
+.field{
+
+  display:grid;
+
+  gap:5px;
+
+}
+
+
+.field label{
+
+  font-size:11px;
+
+  font-weight:700;
+
+  color:var(--muted);
+
+  text-transform:uppercase;
+
+}
+
+
+select,
+input[type="date"]{
+
+  width:100%;
+
+  height:39px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:8px;
+
+  background:#fff;
+
+  padding:
+    0
+    9px;
+
+  color:var(--text);
+
+}
+
+
+.filter-actions{
+
+  display:flex;
+
+  gap:8px;
+
+  align-items:end;
+
+}
+
+
+.period-row{
+
+  padding:
+    0
+    15px
+    15px;
+
+  display:flex;
+
+  gap:8px;
+
+  flex-wrap:wrap;
+
+}
+
+
+.period-row button{
+
+  background:#fff;
+
+  color:var(--g800);
+
+  border:
+    1px solid var(--line);
+
+}
+
+
+.period-row button.active{
+
+  background:var(--gold);
+
+  color:var(--g950);
+
+  border-color:var(--gold);
+
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status{
+
+  min-height:24px;
+
+  margin:
+    10px
+    2px;
+
+  font-size:12px;
+
+  color:var(--muted);
+
+}
+
+
+.status.error{
+
+  color:var(--danger);
+
+}
+
+
+/* =========================================================
+   KPI
+   ========================================================= */
+
+.kpis{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(8,minmax(130px,1fr));
+
+  gap:11px;
+
+}
+
+
+.kpi{
+
+  padding:16px;
+
+  background:#fff;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:14px;
+
+  box-shadow:var(--shadow);
+
+  min-width:0;
+
+}
+
+
+.kpi-label{
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  font-weight:800;
+
+  text-transform:uppercase;
+
+  letter-spacing:.4px;
+
+}
+
+
+.kpi-value{
+
+  font-size:22px;
+
+  font-weight:850;
+
+  margin-top:7px;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+}
+
+
+.kpi-note{
+
+  margin-top:5px;
+
+  color:var(--muted);
+
+  font-size:10px;
+
+}
+
+
+/* =========================================================
+   DASHBOARD GRIDS
+   ========================================================= */
+
+.dashboard-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    2fr
+    1fr;
+
+  gap:14px;
+
+  margin-top:14px;
+
+}
+
+
+.dashboard-grid-2{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap:14px;
+
+  margin-top:14px;
+
+}
+
+
+.panel{
+
+  background:#fff;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:14px;
+
+  box-shadow:var(--shadow);
+
+  padding:17px;
+
+  min-width:0;
+
+}
+
+
+.panel-head{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:10px;
+
+  margin-bottom:12px;
+
+}
+
+
+.panel h2{
+
+  font-size:16px;
+
+  margin:0;
+
+}
+
+
+.panel-head select{
+
+  width:auto;
+
+  min-width:130px;
+
+}
+
+
+/* =========================================================
+   CHART
+   ========================================================= */
+
+.chart-wrap{
+
+  position:relative;
+
+  height:330px;
+
+}
+
+
+canvas{
+
+  width:100%;
+
+  height:100%;
+
+}
+
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+.table-wrap{
+
+  overflow:auto;
+
+  max-height:420px;
+
+}
+
+
+table{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+  font-size:12px;
+
+}
+
+
+th,
+td{
+
+  padding:
+    9px
+    8px;
+
+  border-bottom:
+    1px solid var(--line);
+
+  white-space:nowrap;
+
+  text-align:right;
+
+}
+
+
+th{
+
+  position:sticky;
+
+  top:0;
+
+  background:#f7faf8;
+
+  z-index:2;
+
+  color:#425047;
+
+  font-size:11px;
+
+  text-transform:uppercase;
+
+}
+
+
+th:first-child,
+td:first-child{
+
+  text-align:left;
+
+}
+
+
+.store-link{
+
+  color:var(--g800);
+
+  font-weight:700;
+
+  cursor:pointer;
+
+}
+
+
+.rank-controls{
+
+  display:flex;
+
+  gap:6px;
+
+}
+
+
+.rank-controls button{
+
+  height:34px;
+
+  font-size:11px;
+
+}
+
+
+.rank-controls button.active{
+
+  background:var(--gold);
+
+  color:var(--g950);
+
+}
+
+
+/* =========================================================
+   CHANNEL
+   ========================================================= */
+
+.channel-list{
+
+  display:grid;
+
+  gap:9px;
+
+}
+
+
+.channel-row{
+
+  display:grid;
+
+  grid-template-columns:
+    130px
+    1fr
+    90px;
+
+  gap:8px;
+
+  align-items:center;
+
+}
+
+
+.channel-name{
+
+  font-size:12px;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+  white-space:nowrap;
+
+}
+
+
+.channel-bar{
+
+  height:10px;
+
+  background:#edf3ef;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+}
+
+
+.channel-bar-fill{
+
+  height:100%;
+
+  background:var(--g600);
+
+}
+
+
+.channel-value{
+
+  text-align:right;
+
+  font-size:11px;
+
+  font-weight:700;
+
+}
+
+
+/* =========================================================
+   ACTIVE FILTER CHIPS
+   ========================================================= */
+
+.active-filter-row{
+
+  display:flex;
+
+  gap:7px;
+
+  flex-wrap:wrap;
+
+  margin:
+    10px
+    0;
+
+}
+
+
+.filter-chip{
+
+  background:#e5f3ea;
+
+  color:var(--g800);
+
+  padding:
+    6px
+    9px;
+
+  border-radius:20px;
+
+  font-size:11px;
+
+  font-weight:700;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:1350px){
+
+  .kpis{
 
     grid-template-columns:
-        repeat(
-            4,
-            minmax(180px,1fr)
-        );
+      repeat(4,1fr);
 
-    gap:
-        14px;
+  }
 
-}
 
-label {
-
-    display:block;
-
-    margin-bottom:
-        6px;
-
-    color:
-        var(--muted);
-
-    font-size:
-        12px;
-
-    font-weight:
-        bold;
-
-    text-transform:
-        uppercase;
-
-}
-
-input,
-select {
-
-    width:100%;
-
-    padding:
-        11px 12px;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:
-        9px;
-
-    background:white;
-
-}
-
-.period-buttons {
-
-    display:flex;
-
-    flex-wrap:
-        wrap;
-
-    gap:
-        10px;
-
-    margin-top:
-        18px;
-
-}
-
-button {
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:
-        9px;
-
-    background:
-        white;
-
-    color:
-        var(--green);
-
-    padding:
-        11px 18px;
-
-    font-weight:
-        bold;
-
-    cursor:pointer;
-
-}
-
-button.active {
-
-    background:
-        var(--yellow);
-
-    color:
-        var(--dark);
-
-}
-
-button.primary {
-
-    background:
-        var(--green);
-
-    color:white;
-
-}
-
-.kpis {
-
-    display:grid;
+  .filters{
 
     grid-template-columns:
-        repeat(
-            4,
-            minmax(180px,1fr)
-        );
+      repeat(4,1fr);
 
-    gap:
-        15px;
+  }
 
 }
 
-.kpi {
 
-    background:
-        white;
+@media(max-width:1000px){
 
-    border:
-        1px solid
-        var(--border);
+  .dashboard-grid,
+  .dashboard-grid-2{
 
-    border-radius:
-        15px;
+    grid-template-columns:1fr;
 
-    padding:
-        20px;
+  }
 
-}
 
-.kpi-title {
+  .filters{
 
-    color:
-        var(--muted);
+    grid-template-columns:
+      repeat(2,1fr);
 
-    font-size:
-        13px;
-
-    font-weight:bold;
+  }
 
 }
 
-.kpi-value {
 
-    font-size:
-        28px;
+@media(max-width:650px){
 
-    font-weight:
-        bold;
+  header{
 
-    margin-top:
-        10px;
+    padding:12px;
 
-}
+  }
 
-#error {
 
-    color:
-        var(--danger);
+  .title{
 
-    margin:
-        12px 2px;
+    font-size:17px;
 
-}
+  }
 
-.loading {
 
-    opacity:
-        .55;
+  .user{
 
-}
+    display:none;
 
-@media(max-width:1000px) {
+  }
 
-    .filter-grid {
 
-        grid-template-columns:
-            repeat(
-                2,
-                minmax(150px,1fr)
-            );
+  main{
 
-    }
+    padding:12px;
 
-    .kpis {
+  }
 
-        grid-template-columns:
-            repeat(
-                2,
-                minmax(150px,1fr)
-            );
 
-    }
+  .kpis{
 
-}
+    grid-template-columns:
+      repeat(2,1fr);
 
-@media(max-width:600px) {
+  }
 
-    .filter-grid,
-    .kpis {
 
-        grid-template-columns:
-            1fr;
+  .filters{
 
-    }
+    grid-template-columns:1fr;
+
+  }
+
+
+  .ask-box{
+
+    flex-direction:column;
+
+  }
 
 }
 
@@ -363,17 +986,23 @@ button.primary {
 
 <header>
 
-<div class="header-row">
-
-<a href="index.html">
-← Home
+<a href="/">
+  ← Home
 </a>
 
-<h2>
-Sales Analytics
-</h2>
+<span class="brand">
+  SUBWAY
+</span>
 
-</div>
+<span class="title">
+  Sales Analytics
+</span>
+
+<span
+  class="user"
+  id="userName">
+  Loading…
+</span>
 
 </header>
 
@@ -381,239 +1010,235 @@ Sales Analytics
 <main>
 
 
-<section class="panel">
+<!-- =======================================================
+     ASK ANYTHING
+     ======================================================= -->
+
+<section class="card ask-panel">
+
+<div class="ask-title">
+
+<h2>
+  Ask Anything About Sales
+</h2>
+
+</div>
 
 
-<div class="filter-grid">
+<div class="ask-box">
+
+<input
+  id="askInput"
+  type="text"
+  placeholder="Example: Show bottom 10 stores by ADS in NCR MTD">
+
+<button id="askBtn">
+  Ask
+</button>
+
+</div>
 
 
-<div>
+<div class="ask-help">
+
+Try:
+<strong>Top 10 stores by revenue MTD</strong>,
+<strong>Bottom 10 stores by ADS in NCR</strong>,
+<strong>Show Zomato sales in Mumbai</strong>,
+<strong>Store 71866-1-0 last 7 days</strong>
+
+</div>
+
+
+<div
+  id="askResult"
+  class="ask-result">
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     FILTERS
+     ======================================================= -->
+
+<section class="card">
+
+<div class="filters">
+
+
+<div class="field">
 
 <label>
 From
 </label>
 
 <input
-    id="fromDate"
-    type="date"
->
+  id="fromDate"
+  type="date">
 
 </div>
 
 
-<div>
+<div class="field">
 
 <label>
 To
 </label>
 
 <input
-    id="toDate"
-    type="date"
->
+  id="toDate"
+  type="date">
 
 </div>
 
 
-<div>
+<div class="field">
 
 <label>
 Region
 </label>
 
-<select id="region">
-
+<select id="regionFilter">
 <option value="">
 All Regions
 </option>
-
 </select>
 
 </div>
 
 
-<div>
+<div class="field">
 
 <label>
 Circle
 </label>
 
-<select id="circle">
-
+<select id="circleFilter">
 <option value="">
 All Circles
 </option>
-
 </select>
 
 </div>
 
 
-<div>
-
-<label>
-City
-</label>
-
-<select id="city">
-
-<option value="">
-All Cities
-</option>
-
-</select>
-
-</div>
-
-
-<div>
+<div class="field">
 
 <label>
 Type
 </label>
 
-<select id="type">
-
+<select id="typeFilter">
 <option value="">
 All Types
 </option>
-
 </select>
 
 </div>
 
 
-<div>
+<div class="field">
 
 <label>
 Format
 </label>
 
-<select id="format">
-
+<select id="formatFilter">
 <option value="">
 All Formats
 </option>
-
 </select>
 
 </div>
 
 
-<div>
+<div class="field">
 
 <label>
 Cohort
 </label>
 
-<select id="cohort">
-
+<select id="cohortFilter">
 <option value="">
 All Cohorts
 </option>
-
 </select>
 
 </div>
 
 
-<div>
+<div class="field">
 
 <label>
 Status
 </label>
 
 <select id="statusFilter">
-
 <option value="">
 All Status
 </option>
-
 </select>
 
 </div>
 
 
-<div>
+<div class="field">
 
 <label>
-Area Manager
+City
 </label>
 
-<select id="areaManager">
-
+<select id="cityFilter">
 <option value="">
-All Area Managers
+All Cities
 </option>
-
 </select>
 
 </div>
 
 
-<div>
+<div class="field">
 
 <label>
 Store
 </label>
 
-<select id="store">
-
+<select id="storeFilter">
 <option value="">
 All Stores
 </option>
-
 </select>
 
 </div>
 
 
-<div>
-
-<label>
-Main Source
-</label>
-
-<select id="mainSource">
-
-<option value="">
-All Main Sources
-</option>
-
-</select>
-
-</div>
-
-
-<div>
+<div class="field">
 
 <label>
 Channel
 </label>
 
-<select id="channel">
-
+<select id="sourceFilter">
 <option value="">
 All Channels
 </option>
-
 </select>
 
 </div>
 
 
-<div>
+<div class="field">
 
 <label>
-Source
+Area Manager
 </label>
 
-<select id="source">
-
+<select id="areaManagerFilter">
 <option value="">
-All Sources
+All Area Managers
 </option>
-
 </select>
 
 </div>
@@ -622,222 +1247,602 @@ All Sources
 </div>
 
 
-<div class="period-buttons">
+<div class="period-row">
 
 <button
-    data-period="FTD"
->
-
+  data-period="FTD">
 FTD
-
 </button>
 
-
 <button
-    data-period="WTD"
->
-
+  data-period="WTD">
 WTD
-
 </button>
 
-
 <button
-    data-period="MTD"
-    class="active"
->
-
+  data-period="MTD"
+  class="active">
 MTD
-
 </button>
 
-
 <button
-    data-period="YTD"
->
-
+  data-period="YTD">
 YTD
-
 </button>
 
-
 <button
-    data-period="LAST7"
->
-
+  data-period="L7D">
 Last 7 Days
-
 </button>
 
-
 <button
-    data-period="LAST30"
->
-
+  data-period="L30D">
 Last 30 Days
-
 </button>
 
+<button id="applyBtn">
+Apply Filters
+</button>
 
 <button
-    id="applyBtn"
-    class="primary"
->
-
-Apply Filters
-
-</button>
-
-
-<button id="resetBtn">
-
+  id="resetBtn"
+  class="secondary">
 Reset
-
 </button>
-
 
 </div>
+
+</section>
+
+
+<div
+  id="activeFilters"
+  class="active-filter-row">
+</div>
+
+
+<div
+  id="statusMessage"
+  class="status">
+
+Loading Sales Analytics...
+
+</div>
+
+
+
+<!-- =======================================================
+     KPIs
+     ======================================================= -->
+
+<section class="kpis">
+
+
+<article class="kpi">
+
+<div class="kpi-label">
+Revenue
+</div>
+
+<div
+  class="kpi-value"
+  id="revenue">
+—
+</div>
+
+<div class="kpi-note">
+Net Sale + Charges
+</div>
+
+</article>
+
+
+<article class="kpi">
+
+<div class="kpi-label">
+Bills
+</div>
+
+<div
+  class="kpi-value"
+  id="bills">
+—
+</div>
+
+<div class="kpi-note">
+Total Orders
+</div>
+
+</article>
+
+
+<article class="kpi">
+
+<div class="kpi-label">
+Discount
+</div>
+
+<div
+  class="kpi-value"
+  id="discount">
+—
+</div>
+
+<div class="kpi-note">
+Total Discount
+</div>
+
+</article>
+
+
+<article class="kpi">
+
+<div class="kpi-label">
+Discount %
+</div>
+
+<div
+  class="kpi-value"
+  id="discountPct">
+—
+</div>
+
+<div class="kpi-note">
+Discount / Gross Base
+</div>
+
+</article>
+
+
+<article class="kpi">
+
+<div class="kpi-label">
+Store Days
+</div>
+
+<div
+  class="kpi-value"
+  id="storeDays">
+—
+</div>
+
+<div class="kpi-note">
+Unique Store + Date
+</div>
+
+</article>
+
+
+<article class="kpi">
+
+<div class="kpi-label">
+ADS
+</div>
+
+<div
+  class="kpi-value"
+  id="ads">
+—
+</div>
+
+<div class="kpi-note">
+Revenue / Store Days
+</div>
+
+</article>
+
+
+<article class="kpi">
+
+<div class="kpi-label">
+ADT
+</div>
+
+<div
+  class="kpi-value"
+  id="adt">
+—
+</div>
+
+<div class="kpi-note">
+Bills / Store Days
+</div>
+
+</article>
+
+
+<article class="kpi">
+
+<div class="kpi-label">
+APC
+</div>
+
+<div
+  class="kpi-value"
+  id="apc">
+—
+</div>
+
+<div class="kpi-note">
+Revenue / Bills
+</div>
+
+</article>
 
 
 </section>
 
 
-<div id="error"></div>
 
+<!-- =======================================================
+     TREND + CHANNEL
+     ======================================================= -->
+
+<section class="dashboard-grid">
+
+
+<article class="panel">
+
+<div class="panel-head">
+
+<h2>
+Performance Trend
+</h2>
+
+
+<select id="metricSelect">
+
+<option value="revenue">
+Revenue
+</option>
+
+<option value="ads">
+ADS
+</option>
+
+<option value="adt">
+ADT
+</option>
+
+<option value="apc">
+APC
+</option>
+
+<option value="bills">
+Bills
+</option>
+
+<option value="discount">
+Discount
+</option>
+
+<option value="discountPct">
+Discount %
+</option>
+
+<option value="storeDays">
+Store Days
+</option>
+
+</select>
+
+</div>
+
+
+<div class="chart-wrap">
+
+<canvas id="trendChart">
+</canvas>
+
+</div>
+
+</article>
+
+
+
+<article class="panel">
+
+<div class="panel-head">
+
+<h2>
+Channel Contribution
+</h2>
+
+</div>
+
+
+<div
+  id="channelList"
+  class="channel-list">
+</div>
+
+</article>
+
+
+</section>
+
+
+
+<!-- =======================================================
+     STORE RANKING
+     ======================================================= -->
+
+<section class="dashboard-grid-2">
+
+
+<article class="panel">
+
+<div class="panel-head">
+
+<h2 id="rankingTitle">
+Top 10 Stores
+</h2>
+
+
+<div class="rank-controls">
+
+<button
+  id="topBtn"
+  class="active">
+Top
+</button>
+
+<button id="bottomBtn">
+Bottom
+</button>
+
+<select id="rankingMetric">
+
+<option value="revenue">
+Revenue
+</option>
+
+<option value="ads">
+ADS
+</option>
+
+<option value="adt">
+ADT
+</option>
+
+<option value="apc">
+APC
+</option>
+
+<option value="bills">
+Bills
+</option>
+
+<option value="discountPct">
+Discount %
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Store
+</th>
+
+<th>
+Circle
+</th>
+
+<th>
+Revenue
+</th>
+
+<th>
+ADS
+</th>
+
+<th>
+ADT
+</th>
+
+<th>
+APC
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="rankingRows">
+</tbody>
+
+</table>
+
+</div>
+
+</article>
+
+
+
+<!-- =======================================================
+     DAILY SUMMARY
+     ======================================================= -->
+
+<article class="panel">
+
+<div class="panel-head">
+
+<h2>
+Daily Summary
+</h2>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Date
+</th>
+
+<th>
+Revenue
+</th>
+
+<th>
+Bills
+</th>
+
+<th>
+Store Days
+</th>
+
+<th>
+ADS
+</th>
+
+<th>
+ADT
+</th>
+
+<th>
+APC
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="dailyRows">
+</tbody>
+
+</table>
+
+</div>
+
+</article>
+
+
+</section>
+
+
+
+<!-- =======================================================
+     STORE PERFORMANCE
+     ======================================================= -->
 
 <section
-    class="kpis"
-    id="kpiSection"
->
+  class="panel"
+  style="margin-top:14px;">
 
 
-<div class="kpi">
+<div class="panel-head">
 
-<div class="kpi-title">
+<h2>
+Store Performance
+</h2>
+
+
+<input
+  id="storeSearch"
+  type="text"
+  placeholder="Search store..."
+  style="
+    width:230px;
+    height:36px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:0 10px;
+  ">
+
+</div>
+
+
+<div
+  class="table-wrap"
+  style="max-height:520px;">
+
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Store
+</th>
+
+<th>
+Store Name
+</th>
+
+<th>
+Region
+</th>
+
+<th>
+Circle
+</th>
+
+<th>
+City
+</th>
+
+<th>
 Revenue
-</div>
+</th>
 
-<div
-    class="kpi-value"
-    id="revenue"
->
-—
-</div>
-
-</div>
-
-
-<div class="kpi">
-
-<div class="kpi-title">
+<th>
 Bills
-</div>
+</th>
 
-<div
-    class="kpi-value"
-    id="bills"
->
-—
-</div>
-
-</div>
-
-
-<div class="kpi">
-
-<div class="kpi-title">
-Discount
-</div>
-
-<div
-    class="kpi-value"
-    id="discount"
->
-—
-</div>
-
-</div>
-
-
-<div class="kpi">
-
-<div class="kpi-title">
-Discount %
-</div>
-
-<div
-    class="kpi-value"
-    id="discountPct"
->
-—
-</div>
-
-</div>
-
-
-<div class="kpi">
-
-<div class="kpi-title">
+<th>
 Store Days
-</div>
+</th>
 
-<div
-    class="kpi-value"
-    id="storeDays"
->
-—
-</div>
-
-</div>
-
-
-<div class="kpi">
-
-<div class="kpi-title">
+<th>
 ADS
-</div>
+</th>
 
-<div
-    class="kpi-value"
-    id="ads"
->
-—
-</div>
-
-</div>
-
-
-<div class="kpi">
-
-<div class="kpi-title">
+<th>
 ADT
-</div>
+</th>
 
-<div
-    class="kpi-value"
-    id="adt"
->
-—
-</div>
-
-</div>
-
-
-<div class="kpi">
-
-<div class="kpi-title">
+<th>
 APC
-</div>
+</th>
 
-<div
-    class="kpi-value"
-    id="apc"
->
-—
-</div>
+<th>
+Disc %
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="storeRows">
+</tbody>
+
+</table>
 
 </div>
-
 
 </section>
 
@@ -845,7 +1850,2336 @@ APC
 </main>
 
 
-<script src="sales-analytics.js"></script>
+
+<script>
+
+(() => {
+
+"use strict";
+
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+
+const $ =
+  id =>
+    document.getElementById(id);
+
+
+const money =
+  new Intl.NumberFormat(
+    "en-IN",
+    {
+      style:"currency",
+      currency:"INR",
+      maximumFractionDigits:0
+    }
+  );
+
+
+const number =
+  new Intl.NumberFormat(
+    "en-IN",
+    {
+      maximumFractionDigits:0
+    }
+  );
+
+
+const decimal =
+  new Intl.NumberFormat(
+    "en-IN",
+    {
+      maximumFractionDigits:2
+    }
+  );
+
+
+let apiData = null;
+
+let filterOptions = null;
+
+let maximumDataDate = null;
+
+let rankingDirection = "top";
+
+let rankingCount = 10;
+
+
+/* =========================================================
+   AUTH
+   ========================================================= */
+
+async function loadUser(){
+
+  try{
+
+    const response =
+      await fetch(
+        "/.auth/me"
+      );
+
+
+    const auth =
+      await response.json();
+
+
+    if(
+      auth.clientPrincipal
+    ){
+
+      $("userName").textContent =
+        auth
+          .clientPrincipal
+          .userDetails ||
+        "Signed in";
+
+    }else{
+
+      location.href =
+        "/.auth/login/aad";
+
+    }
+
+  }catch{
+
+    $("userName").textContent =
+      "Signed in";
+
+  }
+
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+function toISO(date){
+
+  return (
+    `${date.getFullYear()}-` +
+    `${String(
+      date.getMonth()+1
+    ).padStart(2,"0")}-` +
+    `${String(
+      date.getDate()
+    ).padStart(2,"0")}`
+  );
+
+}
+
+
+function dateFromISO(value){
+
+  return new Date(
+    value +
+    "T00:00:00"
+  );
+
+}
+
+
+/* =========================================================
+   SELECT OPTIONS
+   ========================================================= */
+
+function fillSelect(
+  id,
+  values,
+  allLabel
+){
+
+  const select =
+    $(id);
+
+
+  const oldValue =
+    select.value;
+
+
+  select.innerHTML =
+    `<option value="">${allLabel}</option>`;
+
+
+  (values || [])
+    .forEach(
+      value => {
+
+        if(!value){
+          return;
+        }
+
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+
+        option.value =
+          value;
+
+
+        option.textContent =
+          value;
+
+
+        select.appendChild(
+          option
+        );
+
+      }
+    );
+
+
+  if(
+    [...select.options]
+      .some(
+        option =>
+          option.value === oldValue
+      )
+  ){
+
+    select.value =
+      oldValue;
+
+  }
+
+}
+
+
+function fillStores(
+  stores
+){
+
+  const select =
+    $("storeFilter");
+
+
+  const oldValue =
+    select.value;
+
+
+  select.innerHTML =
+    `<option value="">All Stores</option>`;
+
+
+  (stores || [])
+    .forEach(
+      store => {
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+
+        option.value =
+          store.storeCode;
+
+
+        option.textContent =
+          store.storeName
+            ? `${store.storeCode} - ${store.storeName}`
+            : store.storeCode;
+
+
+        select.appendChild(
+          option
+        );
+
+      }
+    );
+
+
+  if(
+    [...select.options]
+      .some(
+        option =>
+          option.value === oldValue
+      )
+  ){
+
+    select.value =
+      oldValue;
+
+  }
+
+}
+
+
+/* =========================================================
+   BUILD FILTERS
+   ========================================================= */
+
+function buildFilters(
+  filters
+){
+
+  filterOptions =
+    filters;
+
+
+  fillSelect(
+    "regionFilter",
+    filters.regions,
+    "All Regions"
+  );
+
+
+  fillSelect(
+    "circleFilter",
+    filters.circles,
+    "All Circles"
+  );
+
+
+  fillSelect(
+    "typeFilter",
+    filters.types,
+    "All Types"
+  );
+
+
+  fillSelect(
+    "formatFilter",
+    filters.formats,
+    "All Formats"
+  );
+
+
+  fillSelect(
+    "cohortFilter",
+    filters.cohorts,
+    "All Cohorts"
+  );
+
+
+  fillSelect(
+    "statusFilter",
+    filters.statuses,
+    "All Status"
+  );
+
+
+  fillSelect(
+    "cityFilter",
+    filters.cities,
+    "All Cities"
+  );
+
+
+  fillSelect(
+    "sourceFilter",
+    filters.sources,
+    "All Channels"
+  );
+
+
+  fillSelect(
+    "areaManagerFilter",
+    filters.areaManagers,
+    "All Area Managers"
+  );
+
+
+  fillStores(
+    filters.stores
+  );
+
+}
+
+
+/* =========================================================
+   QUERY PARAMS
+   ========================================================= */
+
+function buildQuery(){
+
+  const parameters =
+    new URLSearchParams();
+
+
+  const map = {
+
+    from:
+      $("fromDate").value,
+
+    to:
+      $("toDate").value,
+
+    region:
+      $("regionFilter").value,
+
+    circle:
+      $("circleFilter").value,
+
+    type:
+      $("typeFilter").value,
+
+    format:
+      $("formatFilter").value,
+
+    cohort:
+      $("cohortFilter").value,
+
+    status:
+      $("statusFilter").value,
+
+    city:
+      $("cityFilter").value,
+
+    store:
+      $("storeFilter").value,
+
+    source:
+      $("sourceFilter").value,
+
+    areaManager:
+      $("areaManagerFilter").value
+
+  };
+
+
+  Object.entries(map)
+    .forEach(
+      ([key,value]) => {
+
+        if(value){
+
+          parameters.set(
+            key,
+            value
+          );
+
+        }
+
+      }
+    );
+
+
+  return parameters;
+
+}
+
+
+/* =========================================================
+   API
+   ========================================================= */
+
+async function loadAnalytics(
+  initial = false
+){
+
+  const status =
+    $("statusMessage");
+
+
+  try{
+
+    status.className =
+      "status";
+
+
+    status.textContent =
+      "Loading Sales Analytics...";
+
+
+    const parameters =
+      initial
+        ? new URLSearchParams()
+        : buildQuery();
+
+
+    const url =
+      parameters.toString()
+        ? `/api/sales-analytics?${parameters}`
+        : "/api/sales-analytics";
+
+
+    const response =
+      await fetch(
+        url,
+        {
+          headers:{
+            Accept:
+              "application/json"
+          }
+        }
+      );
+
+
+    const json =
+      await response.json();
+
+
+    if(!response.ok){
+
+      throw new Error(
+        json.error ||
+        `API Error ${response.status}`
+      );
+
+    }
+
+
+    apiData =
+      json;
+
+
+    if(
+      initial &&
+      json.filters
+    ){
+
+      buildFilters(
+        json.filters
+      );
+
+    }
+
+
+    if(
+      initial &&
+      json.daily?.length
+    ){
+
+      maximumDataDate =
+        json.daily[
+          json.daily.length - 1
+        ].date;
+
+
+      setPeriod(
+        "MTD",
+        false
+      );
+
+
+      return loadAnalytics(
+        false
+      );
+
+    }
+
+
+    renderDashboard();
+
+
+    status.textContent =
+      `Updated ${new Date().toLocaleString("en-IN")} • ` +
+      `${json.stores?.length || 0} stores • ` +
+      `${json.daily?.length || 0} days`;
+
+
+  }catch(error){
+
+    status.className =
+      "status error";
+
+
+    status.textContent =
+      error.message;
+
+  }
+
+}
+
+
+/* =========================================================
+   PERIODS
+   ========================================================= */
+
+function setPeriod(
+  period,
+  reload = true
+){
+
+  if(
+    !maximumDataDate
+  ){
+    return;
+  }
+
+
+  const max =
+    dateFromISO(
+      maximumDataDate
+    );
+
+
+  let start =
+    new Date(max);
+
+
+  if(
+    period === "WTD"
+  ){
+
+    const day =
+      (
+        max.getDay() +
+        6
+      ) % 7;
+
+
+    start.setDate(
+      max.getDate() -
+      day
+    );
+
+  }
+
+
+  if(
+    period === "MTD"
+  ){
+
+    start =
+      new Date(
+        max.getFullYear(),
+        max.getMonth(),
+        1
+      );
+
+  }
+
+
+  if(
+    period === "YTD"
+  ){
+
+    start =
+      new Date(
+        max.getMonth() >= 3
+          ? max.getFullYear()
+          : max.getFullYear()-1,
+        3,
+        1
+      );
+
+  }
+
+
+  if(
+    period === "L7D"
+  ){
+
+    start.setDate(
+      max.getDate() -
+      6
+    );
+
+  }
+
+
+  if(
+    period === "L30D"
+  ){
+
+    start.setDate(
+      max.getDate() -
+      29
+    );
+
+  }
+
+
+  $("fromDate").value =
+    toISO(start);
+
+
+  $("toDate").value =
+    maximumDataDate;
+
+
+  document
+    .querySelectorAll(
+      "[data-period]"
+    )
+    .forEach(
+      button =>
+        button.classList.toggle(
+          "active",
+          button.dataset.period === period
+        )
+    );
+
+
+  if(reload){
+
+    loadAnalytics();
+
+  }
+
+}
+
+
+/* =========================================================
+   KPIs
+   ========================================================= */
+
+function renderKPIs(){
+
+  const summary =
+    apiData?.summary || {};
+
+
+  $("revenue").textContent =
+    money.format(
+      Number(
+        summary.revenue
+      ) || 0
+    );
+
+
+  $("bills").textContent =
+    number.format(
+      Number(
+        summary.bills
+      ) || 0
+    );
+
+
+  $("discount").textContent =
+    money.format(
+      Number(
+        summary.discount
+      ) || 0
+    );
+
+
+  $("discountPct").textContent =
+    decimal.format(
+      Number(
+        summary.discountPct
+      ) || 0
+    ) + "%";
+
+
+  $("storeDays").textContent =
+    number.format(
+      Number(
+        summary.storeDays
+      ) || 0
+    );
+
+
+  $("ads").textContent =
+    money.format(
+      Number(
+        summary.ads
+      ) || 0
+    );
+
+
+  $("adt").textContent =
+    decimal.format(
+      Number(
+        summary.adt
+      ) || 0
+    );
+
+
+  $("apc").textContent =
+    money.format(
+      Number(
+        summary.apc
+      ) || 0
+    );
+
+}
+
+
+/* =========================================================
+   ACTIVE FILTERS
+   ========================================================= */
+
+function renderActiveFilters(){
+
+  const container =
+    $("activeFilters");
+
+
+  container.innerHTML =
+    "";
+
+
+  const filters = [
+
+    ["Region",
+      $("regionFilter").value],
+
+    ["Circle",
+      $("circleFilter").value],
+
+    ["Type",
+      $("typeFilter").value],
+
+    ["Format",
+      $("formatFilter").value],
+
+    ["Cohort",
+      $("cohortFilter").value],
+
+    ["Status",
+      $("statusFilter").value],
+
+    ["City",
+      $("cityFilter").value],
+
+    ["Store",
+      $("storeFilter").value],
+
+    ["Channel",
+      $("sourceFilter").value],
+
+    ["Area Manager",
+      $("areaManagerFilter").value]
+
+  ];
+
+
+  filters
+    .filter(
+      ([,value]) =>
+        value
+    )
+    .forEach(
+      ([name,value]) => {
+
+        const chip =
+          document.createElement(
+            "span"
+          );
+
+
+        chip.className =
+          "filter-chip";
+
+
+        chip.textContent =
+          `${name}: ${value}`;
+
+
+        container.appendChild(
+          chip
+        );
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   DAILY TABLE
+   ========================================================= */
+
+function renderDaily(){
+
+  const rows =
+    apiData?.daily || [];
+
+
+  $("dailyRows").innerHTML =
+    rows
+      .slice()
+      .reverse()
+      .map(
+        row => `
+
+<tr>
+
+<td>
+${row.date}
+</td>
+
+<td>
+${money.format(
+  row.revenue || 0
+)}
+</td>
+
+<td>
+${number.format(
+  row.bills || 0
+)}
+</td>
+
+<td>
+${number.format(
+  row.storeDays || 0
+)}
+</td>
+
+<td>
+${money.format(
+  row.ads || 0
+)}
+</td>
+
+<td>
+${decimal.format(
+  row.adt || 0
+)}
+</td>
+
+<td>
+${money.format(
+  row.apc || 0
+)}
+</td>
+
+</tr>
+
+`
+      )
+      .join("");
+
+}
+
+
+/* =========================================================
+   STORE TABLE
+   ========================================================= */
+
+function renderStores(){
+
+  const search =
+    $("storeSearch")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  let stores =
+    apiData?.stores || [];
+
+
+  if(search){
+
+    stores =
+      stores.filter(
+        store =>
+
+          String(
+            store.storeCode || ""
+          )
+            .toLowerCase()
+            .includes(search)
+
+          ||
+
+          String(
+            store.storeName || ""
+          )
+            .toLowerCase()
+            .includes(search)
+
+          ||
+
+          String(
+            store.circle || ""
+          )
+            .toLowerCase()
+            .includes(search)
+
+          ||
+
+          String(
+            store.city || ""
+          )
+            .toLowerCase()
+            .includes(search)
+
+      );
+
+  }
+
+
+  $("storeRows").innerHTML =
+    stores
+      .map(
+        store => `
+
+<tr>
+
+<td
+  class="store-link"
+  data-store="${store.storeCode}">
+${store.storeCode}
+</td>
+
+<td>
+${store.storeName || ""}
+</td>
+
+<td>
+${store.region || ""}
+</td>
+
+<td>
+${store.circle || ""}
+</td>
+
+<td>
+${store.city || ""}
+</td>
+
+<td>
+${money.format(
+  store.revenue || 0
+)}
+</td>
+
+<td>
+${number.format(
+  store.bills || 0
+)}
+</td>
+
+<td>
+${number.format(
+  store.storeDays || 0
+)}
+</td>
+
+<td>
+${money.format(
+  store.ads || 0
+)}
+</td>
+
+<td>
+${decimal.format(
+  store.adt || 0
+)}
+</td>
+
+<td>
+${money.format(
+  store.apc || 0
+)}
+</td>
+
+<td>
+${decimal.format(
+  store.discountPct || 0
+)}%
+</td>
+
+</tr>
+
+`
+      )
+      .join("");
+
+
+  document
+    .querySelectorAll(
+      ".store-link"
+    )
+    .forEach(
+      element => {
+
+        element.onclick =
+          () => {
+
+            $("storeFilter").value =
+              element.dataset.store;
+
+
+            loadAnalytics();
+
+          };
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   RANKING
+   ========================================================= */
+
+function renderRanking(){
+
+  const metric =
+    $("rankingMetric").value;
+
+
+  let stores =
+    [...(
+      apiData?.stores || []
+    )];
+
+
+  stores =
+    stores.filter(
+      store =>
+        Number.isFinite(
+          Number(
+            store[metric]
+          )
+        )
+    );
+
+
+  stores.sort(
+    (a,b) => {
+
+      const first =
+        Number(
+          a[metric]
+        ) || 0;
+
+
+      const second =
+        Number(
+          b[metric]
+        ) || 0;
+
+
+      return rankingDirection === "top"
+        ? second - first
+        : first - second;
+
+    }
+  );
+
+
+  stores =
+    stores.slice(
+      0,
+      rankingCount
+    );
+
+
+  $("rankingTitle").textContent =
+    `${rankingDirection === "top" ? "Top" : "Bottom"} ` +
+    `${rankingCount} Stores by ` +
+    metric.toUpperCase();
+
+
+  $("rankingRows").innerHTML =
+    stores
+      .map(
+        store => `
+
+<tr>
+
+<td
+  class="store-link"
+  data-store="${store.storeCode}">
+${store.storeCode}
+</td>
+
+<td>
+${store.circle || ""}
+</td>
+
+<td>
+${money.format(
+  store.revenue || 0
+)}
+</td>
+
+<td>
+${money.format(
+  store.ads || 0
+)}
+</td>
+
+<td>
+${decimal.format(
+  store.adt || 0
+)}
+</td>
+
+<td>
+${money.format(
+  store.apc || 0
+)}
+</td>
+
+</tr>
+
+`
+      )
+      .join("");
+
+}
+
+
+/* =========================================================
+   CHANNEL CONTRIBUTION
+   ========================================================= */
+
+function renderChannels(){
+
+  const detail =
+    apiData?.detail || [];
+
+
+  const map =
+    new Map();
+
+
+  detail.forEach(
+    row => {
+
+      const source =
+        row.source ||
+        "Unknown";
+
+
+      if(
+        !map.has(source)
+      ){
+
+        map.set(
+          source,
+          0
+        );
+
+      }
+
+
+      map.set(
+        source,
+        map.get(source) +
+        (
+          Number(
+            row.revenue
+          ) || 0
+        )
+      );
+
+    }
+  );
+
+
+  const channels =
+    [...map.entries()]
+      .map(
+        ([source,revenue]) => ({
+          source,
+          revenue
+        })
+      )
+      .sort(
+        (a,b) =>
+          b.revenue -
+          a.revenue
+      );
+
+
+  const total =
+    channels.reduce(
+      (sum,row) =>
+        sum +
+        row.revenue,
+      0
+    );
+
+
+  $("channelList").innerHTML =
+    channels
+      .slice(
+        0,
+        12
+      )
+      .map(
+        row => {
+
+          const percentage =
+            total > 0
+              ? (
+                  row.revenue /
+                  total
+                ) * 100
+              : 0;
+
+
+          return `
+
+<div class="channel-row">
+
+<div class="channel-name">
+${row.source}
+</div>
+
+<div class="channel-bar">
+
+<div
+  class="channel-bar-fill"
+  style="width:${percentage}%">
+</div>
+
+</div>
+
+<div class="channel-value">
+${decimal.format(
+  percentage
+)}%
+</div>
+
+</div>
+
+`;
+
+        }
+      )
+      .join("");
+
+}
+
+
+/* =========================================================
+   CHART
+   ========================================================= */
+
+function drawTrend(){
+
+  const canvas =
+    $("trendChart");
+
+
+  const metric =
+    $("metricSelect").value;
+
+
+  const rows =
+    apiData?.daily || [];
+
+
+  const rect =
+    canvas.getBoundingClientRect();
+
+
+  const dpr =
+    window.devicePixelRatio || 1;
+
+
+  canvas.width =
+    rect.width * dpr;
+
+
+  canvas.height =
+    rect.height * dpr;
+
+
+  const ctx =
+    canvas.getContext(
+      "2d"
+    );
+
+
+  ctx.scale(
+    dpr,
+    dpr
+  );
+
+
+  const width =
+    rect.width;
+
+
+  const height =
+    rect.height;
+
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  if(!rows.length){
+
+    ctx.fillText(
+      "No data",
+      20,
+      30
+    );
+
+    return;
+
+  }
+
+
+  const padding = {
+
+    left:65,
+    right:20,
+    top:20,
+    bottom:45
+
+  };
+
+
+  const values =
+    rows.map(
+      row =>
+        Number(
+          row[metric]
+        ) || 0
+    );
+
+
+  const max =
+    Math.max(
+      ...values,
+      1
+    );
+
+
+  const chartWidth =
+    width -
+    padding.left -
+    padding.right;
+
+
+  const chartHeight =
+    height -
+    padding.top -
+    padding.bottom;
+
+
+  ctx.font =
+    "11px Segoe UI";
+
+
+  ctx.strokeStyle =
+    "#d6e4da";
+
+
+  ctx.fillStyle =
+    "#6b776f";
+
+
+  for(
+    let i=0;
+    i<=4;
+    i++
+  ){
+
+    const y =
+      padding.top +
+      chartHeight *
+      i /
+      4;
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+      padding.left,
+      y
+    );
+
+
+    ctx.lineTo(
+      width -
+      padding.right,
+      y
+    );
+
+
+    ctx.stroke();
+
+
+    const value =
+      max *
+      (
+        1 -
+        i/4
+      );
+
+
+    let label =
+      number.format(
+        value
+      );
+
+
+    if(
+      metric ===
+      "discountPct"
+    ){
+
+      label =
+        decimal.format(
+          value
+        ) + "%";
+
+    }
+
+
+    ctx.fillText(
+      label,
+      4,
+      y + 4
+    );
+
+  }
+
+
+  if(
+    rows.length === 1
+  ){
+    return;
+  }
+
+
+  const X =
+    index =>
+      padding.left +
+      chartWidth *
+      index /
+      (
+        rows.length -
+        1
+      );
+
+
+  const Y =
+    value =>
+      padding.top +
+      chartHeight *
+      (
+        1 -
+        value/max
+      );
+
+
+  ctx.beginPath();
+
+
+  values.forEach(
+    (value,index) => {
+
+      if(index === 0){
+
+        ctx.moveTo(
+          X(index),
+          Y(value)
+        );
+
+      }else{
+
+        ctx.lineTo(
+          X(index),
+          Y(value)
+        );
+
+      }
+
+    }
+  );
+
+
+  ctx.strokeStyle =
+    "#0c8d4f";
+
+
+  ctx.lineWidth =
+    2.5;
+
+
+  ctx.stroke();
+
+
+  ctx.lineTo(
+    X(
+      values.length - 1
+    ),
+    height -
+    padding.bottom
+  );
+
+
+  ctx.lineTo(
+    X(0),
+    height -
+    padding.bottom
+  );
+
+
+  ctx.closePath();
+
+
+  ctx.fillStyle =
+    "rgba(12,141,79,.12)";
+
+
+  ctx.fill();
+
+
+  const step =
+    Math.max(
+      1,
+      Math.ceil(
+        rows.length /
+        7
+      )
+    );
+
+
+  ctx.fillStyle =
+    "#6b776f";
+
+
+  rows.forEach(
+    (row,index) => {
+
+      if(
+        index % step === 0
+        ||
+        index === rows.length - 1
+      ){
+
+        ctx.fillText(
+          row.date.slice(5),
+          Math.max(
+            padding.left,
+            X(index)-18
+          ),
+          height-15
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   ASK ANYTHING
+   ========================================================= */
+
+function findOption(
+  text,
+  options
+){
+
+  if(!options){
+    return null;
+  }
+
+
+  return options.find(
+    option =>
+
+      text.includes(
+        String(option)
+          .toLowerCase()
+      )
+
+  ) || null;
+
+}
+
+
+function parseAsk(){
+
+  const original =
+    $("askInput")
+      .value
+      .trim();
+
+
+  if(!original){
+    return;
+  }
+
+
+  const text =
+    original.toLowerCase();
+
+
+  let detected = [];
+
+
+  /* PERIOD */
+
+  if(
+    text.includes("mtd")
+    ||
+    text.includes("month to date")
+  ){
+
+    setPeriod(
+      "MTD",
+      false
+    );
+
+    detected.push(
+      "Period: MTD"
+    );
+
+  }
+
+
+  else if(
+    text.includes("wtd")
+    ||
+    text.includes("week to date")
+  ){
+
+    setPeriod(
+      "WTD",
+      false
+    );
+
+    detected.push(
+      "Period: WTD"
+    );
+
+  }
+
+
+  else if(
+    text.includes("ytd")
+    ||
+    text.includes("year to date")
+  ){
+
+    setPeriod(
+      "YTD",
+      false
+    );
+
+    detected.push(
+      "Period: YTD"
+    );
+
+  }
+
+
+  else if(
+    text.includes("last 7")
+    ||
+    text.includes("last seven")
+  ){
+
+    setPeriod(
+      "L7D",
+      false
+    );
+
+    detected.push(
+      "Period: Last 7 Days"
+    );
+
+  }
+
+
+  else if(
+    text.includes("last 30")
+  ){
+
+    setPeriod(
+      "L30D",
+      false
+    );
+
+    detected.push(
+      "Period: Last 30 Days"
+    );
+
+  }
+
+
+  else if(
+    text.includes("ftd")
+    ||
+    text.includes("today")
+  ){
+
+    setPeriod(
+      "FTD",
+      false
+    );
+
+    detected.push(
+      "Period: FTD"
+    );
+
+  }
+
+
+  /* REGION */
+
+  const region =
+    findOption(
+      text,
+      filterOptions?.regions
+    );
+
+
+  if(region){
+
+    $("regionFilter").value =
+      region;
+
+    detected.push(
+      `Region: ${region}`
+    );
+
+  }
+
+
+  /* CIRCLE */
+
+  const circle =
+    findOption(
+      text,
+      filterOptions?.circles
+    );
+
+
+  if(circle){
+
+    $("circleFilter").value =
+      circle;
+
+    detected.push(
+      `Circle: ${circle}`
+    );
+
+  }
+
+
+  /* CITY */
+
+  const city =
+    findOption(
+      text,
+      filterOptions?.cities
+    );
+
+
+  if(city){
+
+    $("cityFilter").value =
+      city;
+
+    detected.push(
+      `City: ${city}`
+    );
+
+  }
+
+
+  /* SOURCE */
+
+  const source =
+    findOption(
+      text,
+      filterOptions?.sources
+    );
+
+
+  if(source){
+
+    $("sourceFilter").value =
+      source;
+
+    detected.push(
+      `Channel: ${source}`
+    );
+
+  }
+
+
+  /* TYPE */
+
+  const type =
+    findOption(
+      text,
+      filterOptions?.types
+    );
+
+
+  if(type){
+
+    $("typeFilter").value =
+      type;
+
+    detected.push(
+      `Type: ${type}`
+    );
+
+  }
+
+
+  /* STORE */
+
+  const stores =
+    filterOptions?.stores || [];
+
+
+  const foundStore =
+    stores.find(
+      store =>
+
+        text.includes(
+          String(
+            store.storeCode
+          ).toLowerCase()
+        )
+
+    );
+
+
+  if(foundStore){
+
+    $("storeFilter").value =
+      foundStore.storeCode;
+
+
+    detected.push(
+      `Store: ${foundStore.storeCode}`
+    );
+
+  }
+
+
+  /* METRIC */
+
+  const metricMap = {
+
+    "revenue":
+      "revenue",
+
+    "sales":
+      "revenue",
+
+    "ads":
+      "ads",
+
+    "adt":
+      "adt",
+
+    "apc":
+      "apc",
+
+    "bills":
+      "bills",
+
+    "orders":
+      "bills",
+
+    "discount":
+      "discountPct"
+
+  };
+
+
+  for(
+    const [
+      keyword,
+      metric
+    ]
+    of Object.entries(
+      metricMap
+    )
+  ){
+
+    if(
+      text.includes(
+        keyword
+      )
+    ){
+
+      $("rankingMetric").value =
+        metric;
+
+
+      $("metricSelect").value =
+        metric;
+
+
+      detected.push(
+        `Metric: ${metric.toUpperCase()}`
+      );
+
+
+      break;
+
+    }
+
+  }
+
+
+  /* TOP / BOTTOM */
+
+  if(
+    text.includes(
+      "bottom"
+    )
+  ){
+
+    rankingDirection =
+      "bottom";
+
+
+    $("bottomBtn")
+      .classList
+      .add(
+        "active"
+      );
+
+
+    $("topBtn")
+      .classList
+      .remove(
+        "active"
+      );
+
+
+    detected.push(
+      "Ranking: Bottom"
+    );
+
+  }
+
+
+  else if(
+    text.includes(
+      "top"
+    )
+  ){
+
+    rankingDirection =
+      "top";
+
+
+    $("topBtn")
+      .classList
+      .add(
+        "active"
+      );
+
+
+    $("bottomBtn")
+      .classList
+      .remove(
+        "active"
+      );
+
+
+    detected.push(
+      "Ranking: Top"
+    );
+
+  }
+
+
+  /* TOP N */
+
+  const rankMatch =
+    text.match(
+      /\b(top|bottom)\s+(\d+)/i
+    );
+
+
+  if(
+    rankMatch
+  ){
+
+    rankingCount =
+      Math.min(
+        Math.max(
+          Number(
+            rankMatch[2]
+          ),
+          1
+        ),
+        100
+      );
+
+
+    detected.push(
+      `Count: ${rankingCount}`
+    );
+
+  }else{
+
+    rankingCount =
+      10;
+
+  }
+
+
+  const resultBox =
+    $("askResult");
+
+
+  resultBox.style.display =
+    "block";
+
+
+  resultBox.innerHTML =
+    detected.length
+
+      ? `<strong>Understood:</strong> ${detected.join(" • ")}`
+
+      : "I could not identify a specific filter. Showing current dashboard.";
+
+
+  loadAnalytics();
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+function renderDashboard(){
+
+  renderKPIs();
+
+  renderActiveFilters();
+
+  renderDaily();
+
+  renderStores();
+
+  renderRanking();
+
+  renderChannels();
+
+  drawTrend();
+
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+function resetDashboard(){
+
+  [
+
+    "regionFilter",
+    "circleFilter",
+    "typeFilter",
+    "formatFilter",
+    "cohortFilter",
+    "statusFilter",
+    "cityFilter",
+    "storeFilter",
+    "sourceFilter",
+    "areaManagerFilter"
+
+  ].forEach(
+    id => {
+
+      $(id).value =
+        "";
+
+    }
+  );
+
+
+  $("askInput").value =
+    "";
+
+
+  $("askResult").style.display =
+    "none";
+
+
+  rankingDirection =
+    "top";
+
+
+  rankingCount =
+    10;
+
+
+  $("topBtn")
+    .classList
+    .add(
+      "active"
+    );
+
+
+  $("bottomBtn")
+    .classList
+    .remove(
+      "active"
+    );
+
+
+  setPeriod(
+    "MTD"
+  );
+
+}
+
+
+/* =========================================================
+   EVENTS
+   ========================================================= */
+
+$("applyBtn").onclick =
+  () =>
+    loadAnalytics();
+
+
+$("resetBtn").onclick =
+  resetDashboard;
+
+
+$("askBtn").onclick =
+  parseAsk;
+
+
+$("askInput")
+  .addEventListener(
+    "keydown",
+    event => {
+
+      if(
+        event.key ===
+        "Enter"
+      ){
+
+        parseAsk();
+
+      }
+
+    }
+  );
+
+
+document
+  .querySelectorAll(
+    "[data-period]"
+  )
+  .forEach(
+    button => {
+
+      button.onclick =
+        () =>
+          setPeriod(
+            button.dataset.period
+          );
+
+    }
+  );
+
+
+$("metricSelect").onchange =
+  drawTrend;
+
+
+$("rankingMetric").onchange =
+  renderRanking;
+
+
+$("topBtn").onclick =
+  () => {
+
+    rankingDirection =
+      "top";
+
+
+    $("topBtn")
+      .classList
+      .add(
+        "active"
+      );
+
+
+    $("bottomBtn")
+      .classList
+      .remove(
+        "active"
+      );
+
+
+    renderRanking();
+
+  };
+
+
+$("bottomBtn").onclick =
+  () => {
+
+    rankingDirection =
+      "bottom";
+
+
+    $("bottomBtn")
+      .classList
+      .add(
+        "active"
+      );
+
+
+    $("topBtn")
+      .classList
+      .remove(
+        "active"
+      );
+
+
+    renderRanking();
+
+  };
+
+
+$("storeSearch")
+  .addEventListener(
+    "input",
+    renderStores
+  );
+
+
+window
+  .addEventListener(
+    "resize",
+    () => {
+
+      if(apiData){
+
+        drawTrend();
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+loadUser();
+
+loadAnalytics(
+  true
+);
+
+
+})();
+
+</script>
 
 
 </body>
