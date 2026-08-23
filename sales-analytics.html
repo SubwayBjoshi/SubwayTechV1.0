@@ -1,1 +1,853 @@
 
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+>
+
+<title>
+Sales Analytics | Subway Insights
+</title>
+
+
+<style>
+
+:root {
+
+    --green:#006747;
+    --dark:#004f35;
+    --yellow:#ffc72c;
+
+    --bg:#edf5ef;
+    --card:#ffffff;
+
+    --text:#17221b;
+    --muted:#68736b;
+
+    --border:#d2e2d7;
+
+    --danger:#b42318;
+
+}
+
+* {
+
+    box-sizing:
+        border-box;
+
+}
+
+body {
+
+    margin:0;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    background:
+        var(--bg);
+
+    color:
+        var(--text);
+
+}
+
+header {
+
+    background:
+        var(--green);
+
+    color:white;
+
+    padding:
+        18px 30px;
+
+}
+
+.header-row {
+
+    max-width:
+        1600px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+}
+
+.header-row a {
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+main {
+
+    max-width:
+        1600px;
+
+    margin:auto;
+
+    padding:
+        30px;
+
+}
+
+.panel {
+
+    background:
+        var(--card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        15px;
+
+    padding:
+        20px;
+
+    margin-bottom:
+        20px;
+
+}
+
+.filter-grid {
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(180px,1fr)
+        );
+
+    gap:
+        14px;
+
+}
+
+label {
+
+    display:block;
+
+    margin-bottom:
+        6px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+
+    font-weight:
+        bold;
+
+    text-transform:
+        uppercase;
+
+}
+
+input,
+select {
+
+    width:100%;
+
+    padding:
+        11px 12px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        9px;
+
+    background:white;
+
+}
+
+.period-buttons {
+
+    display:flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        10px;
+
+    margin-top:
+        18px;
+
+}
+
+button {
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        9px;
+
+    background:
+        white;
+
+    color:
+        var(--green);
+
+    padding:
+        11px 18px;
+
+    font-weight:
+        bold;
+
+    cursor:pointer;
+
+}
+
+button.active {
+
+    background:
+        var(--yellow);
+
+    color:
+        var(--dark);
+
+}
+
+button.primary {
+
+    background:
+        var(--green);
+
+    color:white;
+
+}
+
+.kpis {
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(180px,1fr)
+        );
+
+    gap:
+        15px;
+
+}
+
+.kpi {
+
+    background:
+        white;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        15px;
+
+    padding:
+        20px;
+
+}
+
+.kpi-title {
+
+    color:
+        var(--muted);
+
+    font-size:
+        13px;
+
+    font-weight:bold;
+
+}
+
+.kpi-value {
+
+    font-size:
+        28px;
+
+    font-weight:
+        bold;
+
+    margin-top:
+        10px;
+
+}
+
+#error {
+
+    color:
+        var(--danger);
+
+    margin:
+        12px 2px;
+
+}
+
+.loading {
+
+    opacity:
+        .55;
+
+}
+
+@media(max-width:1000px) {
+
+    .filter-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(150px,1fr)
+            );
+
+    }
+
+    .kpis {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(150px,1fr)
+            );
+
+    }
+
+}
+
+@media(max-width:600px) {
+
+    .filter-grid,
+    .kpis {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="header-row">
+
+<a href="index.html">
+← Home
+</a>
+
+<h2>
+Sales Analytics
+</h2>
+
+</div>
+
+</header>
+
+
+<main>
+
+
+<section class="panel">
+
+
+<div class="filter-grid">
+
+
+<div>
+
+<label>
+From
+</label>
+
+<input
+    id="fromDate"
+    type="date"
+>
+
+</div>
+
+
+<div>
+
+<label>
+To
+</label>
+
+<input
+    id="toDate"
+    type="date"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Region
+</label>
+
+<select id="region">
+
+<option value="">
+All Regions
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+Circle
+</label>
+
+<select id="circle">
+
+<option value="">
+All Circles
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+City
+</label>
+
+<select id="city">
+
+<option value="">
+All Cities
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+Type
+</label>
+
+<select id="type">
+
+<option value="">
+All Types
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+Format
+</label>
+
+<select id="format">
+
+<option value="">
+All Formats
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+Cohort
+</label>
+
+<select id="cohort">
+
+<option value="">
+All Cohorts
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+Status
+</label>
+
+<select id="statusFilter">
+
+<option value="">
+All Status
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+Area Manager
+</label>
+
+<select id="areaManager">
+
+<option value="">
+All Area Managers
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+Store
+</label>
+
+<select id="store">
+
+<option value="">
+All Stores
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+Main Source
+</label>
+
+<select id="mainSource">
+
+<option value="">
+All Main Sources
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+Channel
+</label>
+
+<select id="channel">
+
+<option value="">
+All Channels
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>
+Source
+</label>
+
+<select id="source">
+
+<option value="">
+All Sources
+</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+
+<div class="period-buttons">
+
+<button
+    data-period="FTD"
+>
+
+FTD
+
+</button>
+
+
+<button
+    data-period="WTD"
+>
+
+WTD
+
+</button>
+
+
+<button
+    data-period="MTD"
+    class="active"
+>
+
+MTD
+
+</button>
+
+
+<button
+    data-period="YTD"
+>
+
+YTD
+
+</button>
+
+
+<button
+    data-period="LAST7"
+>
+
+Last 7 Days
+
+</button>
+
+
+<button
+    data-period="LAST30"
+>
+
+Last 30 Days
+
+</button>
+
+
+<button
+    id="applyBtn"
+    class="primary"
+>
+
+Apply Filters
+
+</button>
+
+
+<button id="resetBtn">
+
+Reset
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+<div id="error"></div>
+
+
+<section
+    class="kpis"
+    id="kpiSection"
+>
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+Revenue
+</div>
+
+<div
+    class="kpi-value"
+    id="revenue"
+>
+—
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+Bills
+</div>
+
+<div
+    class="kpi-value"
+    id="bills"
+>
+—
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+Discount
+</div>
+
+<div
+    class="kpi-value"
+    id="discount"
+>
+—
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+Discount %
+</div>
+
+<div
+    class="kpi-value"
+    id="discountPct"
+>
+—
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+Store Days
+</div>
+
+<div
+    class="kpi-value"
+    id="storeDays"
+>
+—
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+ADS
+</div>
+
+<div
+    class="kpi-value"
+    id="ads"
+>
+—
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+ADT
+</div>
+
+<div
+    class="kpi-value"
+    id="adt"
+>
+—
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+APC
+</div>
+
+<div
+    class="kpi-value"
+    id="apc"
+>
+—
+</div>
+
+</div>
+
+
+</section>
+
+
+</main>
+
+
+<script src="sales-analytics.js"></script>
+
+
+</body>
+
+</html>
