@@ -2311,15 +2311,46 @@ async function loadAnalytics(
       );
 
 
-    const json =
-      await response.json();
+    const raw =
+      await response.text();
+
+
+    let json = {};
+
+
+    if(raw){
+
+      try{
+
+        json =
+          JSON.parse(raw);
+
+      }catch(error){
+
+        throw new Error(
+          `API ${response.status}: Invalid JSON response - ${raw.substring(0,300)}`
+        );
+
+      }
+
+    }
 
 
     if(!response.ok){
 
       throw new Error(
         json.error ||
+        json.message ||
         `API Error ${response.status}`
+      );
+
+    }
+
+
+    if(!raw){
+
+      throw new Error(
+        `API ${response.status}: Empty response received from /api/sales-analytics`
       );
 
     }
