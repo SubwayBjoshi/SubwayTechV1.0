@@ -1,173 +1,846 @@
-
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light" />
+  <title>Subway Insights Dashboard</title>
 
-<meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet" />
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
->
+  <style>
+    :root {
+      --green-950: #034225;
+      --green-900: #054f2d;
+      --green-800: #076238;
+      --green-700: #0a7a45;
+      --green-600: #0c8d4f;
+      --green-500: #14a35d;
+      --green-100: #eaf6ef;
 
-<title>
-Subway Insights
-</title>
+      --gold-500: #f4c430;
+      --gold-600: #e2ac0f;
 
-<style>
+      --white: #ffffff;
+      --page: #ecf5ee;
+      --text: #16211b;
+      --muted: #6c786f;
+      --muted-soft: #98a49b;
+      --border: #d7e5db;
 
-:root {
+      --soon-bg: #e4ece5;
+      --soon-icon: #b7c3ba;
+      --soon-text: #97a49a;
 
-    --green:#006747;
-    --dark:#004d35;
-    --yellow:#ffc72c;
-    --bg:#edf5ef;
-    --white:#ffffff;
-    --text:#17221b;
+      --shadow: 0 10px 26px rgba(3, 40, 20, 0.06);
+      --shadow-hover: 0 16px 34px rgba(3, 40, 20, 0.1);
+      --radius-lg: 16px;
+      --radius-md: 12px;
 
-}
+      --font-body: "Inter", "Segoe UI", Arial, sans-serif;
+      --font-display: "Manrope", "Inter", "Segoe UI", Arial, sans-serif;
 
-* {
-    box-sizing:border-box;
-}
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-body {
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    margin:0;
+    html { scroll-behavior: smooth; }
 
-    font-family:
-        Arial,
-        sans-serif;
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
 
-    background:
-        var(--bg);
+    body {
+      font-family: var(--font-body);
+      background: var(--page);
+      color: var(--text);
+      min-height: 100vh;
+    }
 
-    color:
-        var(--text);
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
-}
+    .skip-link {
+      position: fixed;
+      top: -60px;
+      left: 12px;
+      z-index: 100;
+      background: var(--white);
+      color: var(--green-800);
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      transition: top 0.2s var(--ease);
+    }
+    .skip-link:focus { top: 12px; }
 
-header {
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--gold-500);
+      outline-offset: 2px;
+    }
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--dark),
-            var(--green)
-        );
+    /* =========================
+       HEADER
+    ========================== */
 
-    color:white;
+    .header {
+      position: relative;
+      background: linear-gradient(120deg, var(--green-950), var(--green-800));
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-    padding:
-        28px 40px;
+    .header::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-500), var(--gold-600) 60%, transparent);
+    }
 
-}
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.18s ease;
+    }
 
-main {
+    .icon-btn:hover { background: rgba(255, 255, 255, 0.18); }
+    .icon-btn svg { width: 20px; height: 20px; }
 
-    max-width:
-        1200px;
+    .wordmark {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
 
-    margin:
-        40px auto;
+    .wordmark-text {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-style: italic;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+    }
 
-    padding:
-        20px;
+    .wordmark-text .w-sub { color: var(--gold-600); }
+    .wordmark-text .w-way { color: var(--green-700); }
 
-}
+    .wordmark-arrow {
+      color: var(--green-700);
+      display: grid;
+      place-items: center;
+    }
 
-.card {
+    .wordmark-arrow svg { width: 14px; height: 14px; }
 
-    background:
-        white;
+    .header-title {
+      flex: 1;
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.4px;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 0 10px;
+    }
 
-    border-radius:
-        16px;
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
 
-    padding:
-        30px;
+    .user-email {
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 14px;
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
-    box-shadow:
-        0 8px 24px
-        rgba(0,0,0,.07);
+    .logout-btn {
+      background: rgba(255, 255, 255, 0.14);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.18s ease;
+    }
 
-}
+    .logout-btn:hover { background: rgba(255, 255, 255, 0.24); }
 
-.button {
+    /* =========================
+       NAV DRAWER (opened via hamburger)
+    ========================== */
 
-    display:
-        inline-block;
+    .nav-backdrop {
+      display: none;
+    }
 
-    background:
-        var(--green);
+    .nav-backdrop.is-open {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 15, 8, 0.4);
+      z-index: 40;
+    }
 
-    color:
-        white;
+    .nav-drawer {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: min(280px, 82vw);
+      background: var(--green-950);
+      transform: translateX(-100%);
+      transition: transform 0.24s var(--ease);
+      z-index: 50;
+      padding: 20px 14px;
+      display: flex;
+      flex-direction: column;
+    }
 
-    padding:
-        14px 24px;
+    .nav-drawer.is-open { transform: translateX(0); }
 
-    border-radius:
-        9px;
+    .nav-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 8px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 14px;
+    }
 
-    text-decoration:
-        none;
+    .nav-drawer-title {
+      color: white;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 16px;
+    }
 
-    font-weight:
-        bold;
+    .nav-close {
+      background: none;
+      border: none;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+    .nav-close:hover { background: rgba(255, 255, 255, 0.1); }
+    .nav-close svg { width: 16px; height: 16px; }
 
-}
+    .nav-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
 
-</style>
+    .nav-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255, 255, 255, 0.88);
+      text-decoration: none;
+      padding: 11px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      transition: background 0.18s ease;
+    }
 
+    .nav-menu a:hover { background: rgba(255, 255, 255, 0.08); }
+
+    .nav-menu a[aria-current="page"] {
+      background: rgba(255, 255, 255, 0.14);
+      font-weight: 700;
+      box-shadow: inset 3px 0 0 var(--gold-500);
+    }
+
+    .nav-menu-icon {
+      width: 20px; height: 20px;
+      display: grid; place-items: center;
+      flex-shrink: 0;
+    }
+    .nav-menu-icon svg { width: 17px; height: 17px; }
+
+    /* =========================
+       MAIN
+    ========================== */
+
+    .main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 26px 24px 40px;
+    }
+
+    /* ---------- Search ---------- */
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      border: 1.5px solid var(--green-600);
+      border-radius: 14px;
+      padding: 10px 10px 10px 20px;
+      box-shadow: 0 0 0 4px rgba(12, 141, 79, 0.06);
+      margin-bottom: 14px;
+    }
+
+    .search-icon {
+      color: var(--muted);
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+    }
+    .search-icon svg { width: 19px; height: 19px; }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      font-family: var(--font-body);
+      color: var(--text);
+      background: transparent;
+      min-width: 0;
+    }
+
+    .search-input::placeholder { color: var(--muted-soft); }
+
+    .search-ask-btn {
+      background: var(--green-700);
+      color: white;
+      border: none;
+      padding: 11px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.18s ease;
+    }
+    .search-ask-btn:hover { background: var(--green-800); }
+
+    /* ---------- Suggestion chips ---------- */
+
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .suggestion-chip {
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .suggestion-chip:hover {
+      background: var(--white);
+      border-color: var(--green-500);
+      color: var(--green-800);
+    }
+
+    /* ---------- Module grid ---------- */
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .module-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      min-height: 170px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease), background 0.18s ease;
+    }
+
+    .module-card.is-live {
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .module-card.is-live:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      background: var(--white);
+    }
+
+    .module-card.is-live a.module-link-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+    }
+
+    .module-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .module-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--green-700);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .module-icon svg { width: 19px; height: 19px; }
+
+    .module-card.is-soon .module-icon {
+      background: var(--soon-bg);
+      color: var(--soon-icon);
+    }
+
+    .module-badge {
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      padding: 5px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .module-badge.live {
+      background: var(--green-100);
+      color: var(--green-700);
+    }
+
+    .module-badge.soon {
+      background: var(--soon-bg);
+      color: var(--soon-text);
+    }
+
+    .module-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .module-card.is-soon .module-title { color: #5c665f; }
+
+    .module-title svg {
+      width: 14px;
+      height: 14px;
+      color: var(--green-600);
+    }
+
+    .module-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+    }
+
+    .module-card.is-soon .module-desc { color: var(--muted-soft); }
+
+    /* ---------- Footer note ---------- */
+
+    .footer-note {
+      text-align: center;
+      color: var(--muted-soft);
+      font-size: 13px;
+      padding: 10px 0 4px;
+    }
+
+    .footer-note a {
+      color: var(--green-700);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .footer-note a:hover { text-decoration: underline; }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 1150px) {
+      .module-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 860px) {
+      .header { flex-wrap: wrap; padding: 12px 16px; }
+      .header-title {
+        order: 3;
+        flex-basis: 100%;
+        text-align: left;
+        font-size: 19px;
+        padding: 4px 0 0;
+      }
+      .user-email { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .module-grid { grid-template-columns: 1fr; }
+      .search-bar { flex-wrap: wrap; padding: 14px; }
+      .search-ask-btn { width: 100%; }
+      .main { padding: 18px 14px 32px; }
+    }
+  </style>
 </head>
 
-
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
+  <div class="nav-backdrop" id="navBackdrop"></div>
 
-<header>
+  <nav class="nav-drawer" id="navDrawer" aria-label="Dashboard sections">
+    <div class="nav-drawer-header">
+      <span class="nav-drawer-title">Insights menu</span>
+      <button class="nav-close" id="navClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
 
-<h1>
-Subway Insights
-</h1>
+    <div class="nav-menu">
+      <a href="#" aria-current="page">
+        <span class="nav-menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg></span>
+        Home
+      </a>
+      <a href="#">
+        <span class="nav-menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/></svg></span>
+        Store Master
+      </a>
+      <a href="#">
+        <span class="nav-menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
+        Power BI Reports
+      </a>
+      <a href="#">
+        <span class="nav-menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span>
+        Store Scorecard
+      </a>
+      <a href="/sales-analytics.html">
+        <span class="nav-menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></span>
+        Sales Analytics
+      </a>
+      <a href="#">
+        <span class="nav-menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span>
+        Profit &amp; Loss Report
+      </a>
+      <a href="#">
+        <span class="nav-menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="4" height="10"/><rect x="10" y="4" width="4" height="16"/><rect x="16" y="7" width="4" height="13"/></svg></span>
+        Ops KPI Dashboard
+      </a>
+      <a href="#">
+        <span class="nav-menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 10-8 8"/><path d="M12 8v4l3 2"/></svg></span>
+        COGS Report
+      </a>
+    </div>
+  </nav>
 
-<p>
-Business Intelligence & Analytics Portal
-</p>
+  <header class="header">
+    <button class="icon-btn" id="navOpen" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
 
-</header>
+    <a href="#" class="icon-btn" aria-label="Go to home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+    </a>
 
+    <div class="wordmark" aria-hidden="true">
+      <span class="wordmark-text"><span class="w-sub">SUB</span><span class="w-way">WAY</span></span>
+      <span class="wordmark-arrow">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 12l14-7-4 7 4 7z"/></svg>
+      </span>
+    </div>
 
-<main>
+    <h1 class="header-title">Subway Insights Dashboard</h1>
 
-<div class="card">
+    <div class="header-right">
+      <span class="user-email" id="userName">Loading…</span>
 
-<h2>
-Sales Analytics
-</h2>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a6 6 0 000 12 6 6 0 000 6"/></svg>
+      </button>
 
-<p>
-Revenue, Bills, Discount, Store Days,
-ADS, ADT, APC and performance analysis.
-</p>
+      <a href="/.auth/logout" class="logout-btn">Log out</a>
+    </div>
+  </header>
 
-<a
-    class="button"
-    href="sales-analytics.html"
->
+  <main class="main" id="main-content">
 
-Open Sales Analytics
+    <form class="search-bar" id="searchForm" role="search">
+      <span class="search-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </span>
+      <input
+        class="search-input"
+        id="searchInput"
+        type="search"
+        placeholder="Ask anything about your data…"
+        aria-label="Ask anything about your data"
+      />
+      <button class="search-ask-btn" type="submit">Ask</button>
+    </form>
 
-</a>
+    <div class="suggestions" id="suggestions">
+      <button class="suggestion-chip" type="button">stores where swiggy serviceability dropped in the last 2 weeks</button>
+      <button class="suggestion-chip" type="button">bottom 10 stores on Swiggy MFR</button>
+      <button class="suggestion-chip" type="button">which region has the worst zomato rating</button>
+      <button class="suggestion-chip" type="button">stores off target on 3 or more metrics last week</button>
+    </div>
 
-</div>
+    <div class="module-grid">
 
-</main>
+      <div class="module-card is-live">
+        <a class="module-link-overlay sr-only-link" href="#" aria-label="Open Store Master"></a>
+        <div class="module-top">
+          <div class="module-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/></svg>
+          </div>
+          <span class="module-badge live">LIVE</span>
+        </div>
+        <div class="module-title">Store Master</div>
+        <div class="module-desc">Master list of all stores and their attributes.</div>
+      </div>
 
+      <div class="module-card is-live">
+        <a class="module-link-overlay sr-only-link" href="#" aria-label="Open Power BI, opens existing reports"></a>
+        <div class="module-top">
+          <div class="module-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="4" height="10"/><rect x="10" y="4" width="4" height="16"/><rect x="16" y="7" width="4" height="13"/></svg>
+          </div>
+          <span class="module-badge live">LIVE</span>
+        </div>
+        <div class="module-title">
+          Power BI
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </div>
+        <div class="module-desc">Existing Power BI reports and dashboards.</div>
+      </div>
 
+      <div class="module-card is-soon">
+        <div class="module-top">
+          <div class="module-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <span class="module-badge soon">COMING SOON</span>
+        </div>
+        <div class="module-title">Store Scorecard</div>
+        <div class="module-desc">Single-glance health score per store across key metrics.</div>
+      </div>
+
+      <div class="module-card is-soon">
+        <div class="module-top">
+          <div class="module-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+          </div>
+          <span class="module-badge soon">COMING SOON</span>
+        </div>
+        <div class="module-title">ManCom</div>
+        <div class="module-desc">Tables for the internal monthly management review (ManCom) meetings.</div>
+      </div>
+
+      <div class="module-card is-live">
+        <a class="module-link-overlay sr-only-link" href="/sales-analytics.html" aria-label="Open Sales Analytics"></a>
+        <div class="module-top">
+          <div class="module-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/><path d="M2 3h2l2.6 12.4a2 2 0 002 1.6h8.8a2 2 0 002-1.6L21 7H6"/></svg>
+          </div>
+          <span class="module-badge live">LIVE</span>
+        </div>
+        <div class="module-title">Sales Analytics</div>
+        <div class="module-desc">Revenue, order volumes, average order value and daypart trends.</div>
+      </div>
+
+      <div class="module-card is-live">
+        <a class="module-link-overlay sr-only-link" href="https://pulse.mysubway.in/login" target="_blank" rel="noopener noreferrer" aria-label="Open Profit and Loss Report (opens in a new tab)"></a>
+        <div class="module-top">
+          <div class="module-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <span class="module-badge live">LIVE</span>
+        </div>
+        <div class="module-title">
+          Profit &amp; Loss Report
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </div>
+        <div class="module-desc">Store-level P&amp;L summary and margins.</div>
+      </div>
+
+      <div class="module-card is-live">
+        <a class="module-link-overlay sr-only-link" href="#" aria-label="Open Ops KPI Dashboard"></a>
+        <div class="module-top">
+          <div class="module-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
+          </div>
+          <span class="module-badge live">LIVE</span>
+        </div>
+        <div class="module-title">Ops KPI Dashboard</div>
+        <div class="module-desc">Delivery KPIs across Swiggy &amp; Zomato — KPT, serviceability, ratings, IGCC &amp; ORS.</div>
+      </div>
+
+      <div class="module-card is-soon">
+        <div class="module-top">
+          <div class="module-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 10-8 8"/><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+          </div>
+          <span class="module-badge soon">COMING SOON</span>
+        </div>
+        <div class="module-title">COGS Report</div>
+        <div class="module-desc">Cost of goods sold by store, category and period, against food cost targets.</div>
+      </div>
+
+    </div>
+
+    <div class="footer-note">
+      More modules are on the way. Have a request for the Insights team? <a href="#">Let us know</a>.
+    </div>
+
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* ---------- Nav drawer ---------- */
+      const navDrawer = document.getElementById("navDrawer");
+      const navBackdrop = document.getElementById("navBackdrop");
+      const navOpen = document.getElementById("navOpen");
+      const navClose = document.getElementById("navClose");
+
+      function openNav() {
+        navDrawer.classList.add("is-open");
+        navBackdrop.classList.add("is-open");
+        navOpen.setAttribute("aria-expanded", "true");
+      }
+
+      function closeNav() {
+        navDrawer.classList.remove("is-open");
+        navBackdrop.classList.remove("is-open");
+        navOpen.setAttribute("aria-expanded", "false");
+      }
+
+      navOpen.addEventListener("click", openNav);
+      navClose.addEventListener("click", closeNav);
+      navBackdrop.addEventListener("click", closeNav);
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeNav();
+      });
+
+      /* ---------- Search + suggestion chips ---------- */
+      const searchForm = document.getElementById("searchForm");
+      const searchInput = document.getElementById("searchInput");
+
+      searchForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const query = searchInput.value.trim();
+        if (!query) return;
+        // Wire this up to your query/insights backend.
+        console.log("Ask submitted:", query);
+      });
+
+      document.querySelectorAll(".suggestion-chip").forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          searchInput.value = chip.textContent;
+          searchInput.focus();
+        });
+      });
+
+      /* ---------- Simple theme toggle (accent tint) ---------- */
+      const themeToggle = document.getElementById("themeToggle");
+      themeToggle.addEventListener("click", function () {
+        document.documentElement.classList.toggle("theme-cool");
+      });
+
+      /* ---------- Azure Static Web Apps auth ---------- */
+      async function loadUser() {
+        const userElement = document.getElementById("userName");
+
+        try {
+          const response = await fetch("/.auth/me");
+          if (!response.ok) throw new Error("Unable to retrieve user (status " + response.status + ")");
+
+          const data = await response.json();
+
+          if (data && data.clientPrincipal) {
+            userElement.textContent = data.clientPrincipal.userDetails || "Signed in";
+          } else {
+            window.location.href = "/.auth/login/aad";
+          }
+        } catch (error) {
+          console.error("Authentication error:", error);
+          userElement.textContent = "Signed in";
+        }
+      }
+
+      loadUser();
+    })();
+  </script>
 </body>
-
 </html>
