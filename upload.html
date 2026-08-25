@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+>
+
+<title>
+Labor Cost Master Upload
+</title>
+
+<link
+    rel="stylesheet"
+    href="assets/labor-cost.css"
+>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="header-inner">
+
+    <div>
+
+        <h1>
+            Labor Cost Master Upload
+        </h1>
+
+        <p>
+            Subway Insights
+        </p>
+
+    </div>
+
+
+    <div class="header-actions">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="labor-cost.html">
+            Labor Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+</header>
+
+
+<main>
+
+
+<section class="panel">
+
+<h2>
+Upload Labor Cost Masters
+</h2>
+
+<p>
+Upload CSV files only.
+</p>
+
+
+<div class="detail-grid">
+
+
+<!-- ADS GRID -->
+
+<div>
+
+    <span>
+        ADS Grid Master
+    </span>
+
+    <input
+        type="file"
+        id="adsFile"
+        accept=".csv"
+    >
+
+    <br><br>
+
+    <button
+        onclick="
+        uploadMaster(
+            'ads-grid',
+            'adsFile'
+        )"
+    >
+        Upload
+    </button>
+
+</div>
+
+
+<!-- HRIS -->
+
+<div>
+
+    <span>
+        HRIS Master
+    </span>
+
+    <input
+        type="file"
+        id="hrisFile"
+        accept=".csv"
+    >
+
+    <br><br>
+
+    <button
+        onclick="
+        uploadMaster(
+            'hris',
+            'hrisFile'
+        )"
+    >
+        Upload
+    </button>
+
+</div>
+
+
+<!-- FNF -->
+
+<div>
+
+    <span>
+        F&F Adjustment
+    </span>
+
+    <input
+        type="file"
+        id="fnfFile"
+        accept=".csv"
+    >
+
+    <br><br>
+
+    <button
+        onclick="
+        uploadMaster(
+            'fnf',
+            'fnfFile'
+        )"
+    >
+        Upload
+    </button>
+
+</div>
+
+
+<!-- AOP -->
+
+<div>
+
+    <span>
+        AOP Master
+    </span>
+
+    <input
+        type="file"
+        id="aopFile"
+        accept=".csv"
+    >
+
+    <br><br>
+
+    <button
+        onclick="
+        uploadMaster(
+            'aop',
+            'aopFile'
+        )"
+    >
+        Upload
+    </button>
+
+</div>
+
+
+</div>
+
+
+<div
+    id="uploadStatus"
+    style="
+        margin-top:20px;
+        font-weight:bold;
+    "
+></div>
+
+
+</section>
+
+
+</main>
+
+
+<script>
+
+async function uploadMaster(
+    master,
+    inputId
+) {
+
+    const input =
+        document.getElementById(
+            inputId
+        );
+
+    const status =
+        document.getElementById(
+            "uploadStatus"
+        );
+
+
+    if (!input.files.length) {
+
+        status.textContent =
+            "Please select CSV file.";
+
+        return;
+
+    }
+
+
+    const file =
+        input.files[0];
+
+
+    if (
+        !file.name
+            .toLowerCase()
+            .endsWith(".csv")
+    ) {
+
+        status.textContent =
+            "Only CSV files are allowed.";
+
+        return;
+
+    }
+
+
+    try {
+
+        status.textContent =
+            "Uploading...";
+
+
+        const csv =
+            await file.text();
+
+
+        const response =
+            await fetch(
+                `/api/upload-master?master=${master}`,
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "text/csv"
+                    },
+
+                    body: csv
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.error ||
+                "Upload failed."
+            );
+
+        }
+
+
+        status.textContent =
+            `${master} uploaded successfully.`;
+
+    }
+
+    catch(error) {
+
+        status.textContent =
+            error.message;
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
