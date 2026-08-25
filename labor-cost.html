@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Labor Cost | Subway Insights</title>
+
+    <link rel="stylesheet" href="assets/labor-cost.css">
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+
+        <div>
+            <h1>SUBWAY | Labor Cost Analytics</h1>
+            <p>AOP vs Actual | FTE | ADS | Labor Cost</p>
+        </div>
+
+        <div class="header-actions">
+            <a href="index.html">Home</a>
+            <a href="upload.html">Upload Masters</a>
+        </div>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- FILTERS -->
+
+    <section class="filter-panel">
+
+        <div>
+            <label>Month</label>
+            <select id="monthFilter">
+                <option value="">All</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Region</label>
+            <select id="regionFilter">
+                <option value="">All</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Circle</label>
+            <select id="circleFilter">
+                <option value="">All</option>
+            </select>
+        </div>
+
+        <div>
+            <label>City</label>
+            <select id="cityFilter">
+                <option value="">All</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Store</label>
+            <select id="storeFilter">
+                <option value="">All</option>
+            </select>
+        </div>
+
+        <button id="resetFilters">
+            Reset
+        </button>
+
+    </section>
+
+
+    <!-- KPI CARDS -->
+
+    <section class="kpi-grid">
+
+        <div class="kpi-card">
+            <span>Actual Sales</span>
+            <strong id="actualSales">₹0</strong>
+        </div>
+
+        <div class="kpi-card">
+            <span>AOP Sales</span>
+            <strong id="aopSales">₹0</strong>
+        </div>
+
+        <div class="kpi-card">
+            <span>Actual ADS</span>
+            <strong id="actualADS">₹0</strong>
+        </div>
+
+        <div class="kpi-card">
+            <span>AOP ADS</span>
+            <strong id="aopADS">₹0</strong>
+        </div>
+
+        <div class="kpi-card">
+            <span>Actual Labor Cost</span>
+            <strong id="actualLC">₹0</strong>
+        </div>
+
+        <div class="kpi-card">
+            <span>AOP Labor Cost</span>
+            <strong id="aopLC">₹0</strong>
+        </div>
+
+        <div class="kpi-card">
+            <span>Actual LC %</span>
+            <strong id="actualLCP">0%</strong>
+        </div>
+
+        <div class="kpi-card">
+            <span>AOP LC %</span>
+            <strong id="aopLCP">0%</strong>
+        </div>
+
+        <div class="kpi-card">
+            <span>Ideal FTE</span>
+            <strong id="idealFTE">0</strong>
+        </div>
+
+        <div class="kpi-card">
+            <span>Actual FTE</span>
+            <strong id="actualFTE">0</strong>
+        </div>
+
+        <div class="kpi-card">
+            <span>FTE Gap</span>
+            <strong id="fteGap">0</strong>
+        </div>
+
+        <div class="kpi-card">
+            <span>LC Variance</span>
+            <strong id="lcVariance">₹0</strong>
+        </div>
+
+    </section>
+
+
+    <!-- DRILL DOWN -->
+
+    <section class="panel">
+
+        <div class="panel-header">
+
+            <div>
+                <h2>Labor Cost Drill Down</h2>
+                <p>
+                    Region → Circle → City → Store
+                </p>
+            </div>
+
+            <button id="drillBack">
+                ← Back
+            </button>
+
+        </div>
+
+        <div id="breadcrumb">
+            All India
+        </div>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+                <tr>
+                    <th id="levelHeading">Region</th>
+                    <th>Stores</th>
+                    <th>Actual Sales</th>
+                    <th>AOP Sales</th>
+                    <th>Actual ADS</th>
+                    <th>AOP ADS</th>
+                    <th>Actual LC</th>
+                    <th>AOP LC</th>
+                    <th>Actual LC%</th>
+                    <th>AOP LC%</th>
+                    <th>Ideal FTE</th>
+                    <th>Actual FTE</th>
+                    <th>FTE Gap</th>
+                </tr>
+                </thead>
+
+                <tbody id="laborTableBody">
+
+                <tr>
+                    <td colspan="13">
+                        Loading Labor Cost data...
+                    </td>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- STORE DETAIL -->
+
+    <section
+        class="panel"
+        id="storeDetailPanel"
+        style="display:none;"
+    >
+
+        <h2>
+            Store Labor Cost Detail
+        </h2>
+
+        <h3 id="selectedStoreName"></h3>
+
+
+        <div class="detail-grid">
+
+            <div>
+                <span>ADS Band</span>
+                <strong id="storeADSBand">-</strong>
+            </div>
+
+            <div>
+                <span>Operating Days</span>
+                <strong id="storeDays">0</strong>
+            </div>
+
+            <div>
+                <span>Fixed LC</span>
+                <strong id="fixedLC">₹0</strong>
+            </div>
+
+            <div>
+                <span>Variable LC</span>
+                <strong id="variableLC">₹0</strong>
+            </div>
+
+            <div>
+                <span>F&F Adjustment</span>
+                <strong id="fnfAdjustment">₹0</strong>
+            </div>
+
+            <div>
+                <span>Sales / FTE</span>
+                <strong id="salesPerFTE">₹0</strong>
+            </div>
+
+        </div>
+
+
+        <h3 class="sub-title">
+            Ideal vs Actual FTE
+        </h3>
+
+        <table>
+
+            <thead>
+            <tr>
+                <th>Designation</th>
+                <th>Ideal FTE</th>
+                <th>Actual FTE</th>
+                <th>Gap</th>
+            </tr>
+            </thead>
+
+            <tbody id="fteDetailBody"></tbody>
+
+        </table>
+
+    </section>
+
+
+</main>
+
+
+<footer>
+    Subway Insights | Labor Cost Analytics
+</footer>
+
+
+<script src="assets/labor-cost.js"></script>
+
+</body>
+</html>
