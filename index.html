@@ -13,366 +13,852 @@
 
     <style>
 
+        /* ==========================================
+           ROOT COLORS
+        ========================================== */
+
         :root {
             --green-dark: #004f35;
             --green: #006747;
             --green-light: #0b7a53;
+
             --yellow: #ffc72c;
+
             --background: #edf5ef;
             --white: #ffffff;
+
             --text: #17221b;
             --muted: #657269;
+
             --border: #d4e3d8;
         }
+
 
         * {
             box-sizing: border-box;
         }
 
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--background);
-            color: var(--text);
+
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* =========================
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Inter,
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #f4faf6 0%,
+                    var(--background) 100%
+                );
+
+            color: var(--text);
+
+            min-height: 100vh;
+        }
+
+
+        /* ==========================================
            HEADER
-        ========================= */
+        ========================================== */
 
         header {
+
             background:
                 linear-gradient(
                     135deg,
-                    var(--green-dark),
+                    #003f2b,
                     var(--green)
                 );
 
             color: white;
-            border-bottom: 4px solid var(--yellow);
+
+            border-bottom:
+                4px solid var(--yellow);
+
+            box-shadow:
+                0 3px 12px
+                rgba(0, 0, 0, 0.10);
         }
 
+
         .header-inner {
-            max-width: 1500px;
+
+            max-width: 1450px;
+
             margin: auto;
-            padding: 24px 30px;
+
+            padding:
+                17px 28px;
 
             display: flex;
+
             align-items: center;
-            justify-content: space-between;
+
+            justify-content:
+                space-between;
+
             gap: 20px;
         }
 
+
         .brand {
+
             display: flex;
+
             align-items: center;
-            gap: 18px;
+
+            gap: 15px;
         }
+
+
+        /* SUBWAY LOGO BOX */
 
         .logo-box {
-            background: white;
-            color: var(--green);
-            padding: 12px 20px;
-            border-radius: 12px;
-            font-size: 21px;
-            font-weight: 900;
-            letter-spacing: 1px;
+
+            background:
+                var(--white);
+
+            color:
+                var(--green);
+
+            padding:
+                9px 17px;
+
+            border-radius:
+                9px;
+
+            font-size:
+                19px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                1px;
+
+            box-shadow:
+                0 4px 12px
+                rgba(0, 0, 0, 0.10);
+
+            border-bottom:
+                3px solid
+                var(--yellow);
         }
+
 
         .header-title h1 {
+
             margin: 0;
-            font-size: 28px;
+
+            font-size:
+                23px;
+
+            font-weight:
+                700;
         }
+
 
         .header-title p {
-            margin: 5px 0 0;
-            opacity: 0.9;
-            font-size: 14px;
+
+            margin:
+                3px 0 0;
+
+            opacity:
+                0.85;
+
+            font-size:
+                12px;
         }
+
 
         .user-area {
-            font-size: 14px;
-            opacity: 0.95;
-        }
 
-        /* =========================
-           MAIN
-        ========================= */
-
-        main {
-            max-width: 1500px;
-            margin: auto;
-            padding: 35px 30px 60px;
-        }
-
-        .welcome {
-            margin-bottom: 30px;
-        }
-
-        .welcome h2 {
-            margin: 0 0 8px;
-            font-size: 26px;
-            color: var(--green-dark);
-        }
-
-        .welcome p {
-            margin: 0;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        /* =========================
-           DASHBOARD GRID
-        ========================= */
-
-        .dashboard-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(
-                    3,
-                    minmax(260px, 1fr)
-                );
-
-            gap: 22px;
-        }
-
-        /* =========================
-           CARD
-        ========================= */
-
-        .dashboard-card {
-            background: var(--white);
+            padding:
+                8px 13px;
 
             border:
                 1px solid
-                var(--border);
-
-            border-radius: 18px;
-
-            padding: 25px;
-
-            min-height: 245px;
-
-            display: flex;
-            flex-direction: column;
-
-            box-shadow:
-                0 8px 24px
-                rgba(0, 70, 45, 0.06);
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease,
-                border-color 0.2s ease;
-        }
-
-        .dashboard-card:hover {
-            transform: translateY(-4px);
-
-            border-color:
-                #a8cab5;
-
-            box-shadow:
-                0 14px 30px
-                rgba(0, 70, 45, 0.12);
-        }
-
-        .card-icon {
-            width: 52px;
-            height: 52px;
-
-            border-radius: 13px;
+                rgba(255, 255, 255, 0.20);
 
             background:
-                #e7f3eb;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            font-size: 26px;
-
-            margin-bottom: 18px;
-        }
-
-        .dashboard-card h3 {
-            margin: 0 0 10px;
-
-            font-size: 21px;
-
-            color:
-                var(--green-dark);
-        }
-
-        .dashboard-card p {
-            margin: 0 0 22px;
-
-            color:
-                var(--muted);
-
-            line-height: 1.55;
-
-            font-size: 14px;
-
-            flex: 1;
-        }
-
-        /* =========================
-           BUTTONS
-        ========================= */
-
-        .card-button {
-            display: inline-block;
-
-            width: 100%;
-
-            text-align: center;
-
-            padding: 13px 18px;
-
-            border-radius: 10px;
-
-            background:
-                var(--green);
-
-            color: white;
-
-            text-decoration: none;
-
-            font-weight: 700;
-
-            transition:
-                background 0.2s ease,
-                transform 0.2s ease;
-        }
-
-        .card-button:hover {
-            background:
-                var(--green-dark);
-        }
-
-        .yellow-button {
-            background:
-                var(--yellow);
-
-            color:
-                var(--green-dark);
-        }
-
-        .yellow-button:hover {
-            background:
-                #f0b900;
-        }
-
-        /* =========================
-           SECTION
-        ========================= */
-
-        .section-title {
-            margin:
-                38px 0 18px;
-
-            font-size:
-                20px;
-
-            color:
-                var(--green-dark);
-        }
-
-        /* =========================
-           COMING SOON
-        ========================= */
-
-        .coming-soon {
-            opacity: 0.65;
-        }
-
-        .coming-label {
-            display: inline-block;
-
-            background:
-                #f2f4f3;
-
-            color:
-                #68736c;
-
-            padding:
-                7px 12px;
+                rgba(255, 255, 255, 0.08);
 
             border-radius:
-                20px;
+                8px;
 
             font-size:
                 12px;
 
             font-weight:
-                bold;
+                500;
         }
 
-        /* =========================
-           FOOTER
-        ========================= */
 
-        footer {
-            background:
-                var(--green-dark);
+        /* ==========================================
+           MAIN
+        ========================================== */
 
-            color:
-                white;
+        main {
+
+            max-width:
+                1450px;
+
+            margin:
+                auto;
 
             padding:
-                20px 30px;
+                25px 28px 45px;
+        }
 
-            text-align:
-                center;
+
+        /* ==========================================
+           WELCOME
+        ========================================== */
+
+        .welcome {
+
+            margin-bottom:
+                20px;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                flex-end;
+
+            gap: 20px;
+        }
+
+
+        .welcome h2 {
+
+            margin:
+                0 0 5px;
+
+            font-size:
+                23px;
+
+            color:
+                var(--green-dark);
+        }
+
+
+        .welcome p {
+
+            margin:
+                0;
+
+            color:
+                var(--muted);
+
+            line-height:
+                1.5;
 
             font-size:
                 13px;
         }
 
-        /* =========================
-           RESPONSIVE
-        ========================= */
 
-        @media (max-width: 1050px) {
+        /* ==========================================
+           DASHBOARD GRID
+        ========================================== */
+
+        .dashboard-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    minmax(210px, 1fr)
+                );
+
+            gap:
+                15px;
+        }
+
+
+        /* ==========================================
+           CARD
+        ========================================== */
+
+        .dashboard-card {
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            background:
+                var(--white);
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                13px;
+
+            padding:
+                17px;
+
+            min-height:
+                188px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            box-shadow:
+                0 4px 13px
+                rgba(0, 70, 45, 0.055);
+
+            transition:
+                transform 0.20s ease,
+                box-shadow 0.20s ease,
+                border-color 0.20s ease;
+        }
+
+
+        /* TOP GREEN LINE */
+
+        .dashboard-card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                0;
+
+            width:
+                100%;
+
+            height:
+                3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--green),
+                    var(--yellow)
+                );
+
+            opacity:
+                0;
+
+            transition:
+                opacity 0.2s ease;
+        }
+
+
+        .dashboard-card:hover {
+
+            transform:
+                translateY(-4px);
+
+            border-color:
+                #9ac6aa;
+
+            box-shadow:
+                0 10px 24px
+                rgba(0, 70, 45, 0.11);
+        }
+
+
+        .dashboard-card:hover::before {
+
+            opacity:
+                1;
+        }
+
+
+        /* ==========================================
+           CARD TOP
+        ========================================== */
+
+        .card-top {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                11px;
+
+            margin-bottom:
+                10px;
+        }
+
+
+        /* ==========================================
+           CARD ICON
+        ========================================== */
+
+        .card-icon {
+
+            min-width:
+                39px;
+
+            width:
+                39px;
+
+            height:
+                39px;
+
+            border-radius:
+                9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e4f4e9,
+                    #f4faf6
+                );
+
+            border:
+                1px solid
+                #d6eadc;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-size:
+                19px;
+        }
+
+
+        /* ==========================================
+           CARD TITLE
+        ========================================== */
+
+        .dashboard-card h3 {
+
+            margin:
+                0;
+
+            font-size:
+                16px;
+
+            line-height:
+                1.3;
+
+            color:
+                var(--green-dark);
+
+            font-weight:
+                700;
+        }
+
+
+        /* ==========================================
+           CARD DESCRIPTION
+        ========================================== */
+
+        .dashboard-card p {
+
+            margin:
+                0 0 13px;
+
+            color:
+                var(--muted);
+
+            line-height:
+                1.43;
+
+            font-size:
+                12px;
+
+            flex:
+                1;
+        }
+
+
+        /* ==========================================
+           BUTTON
+        ========================================== */
+
+        .card-button {
+
+            display:
+                block;
+
+            width:
+                100%;
+
+            text-align:
+                center;
+
+            padding:
+                8px 11px;
+
+            border-radius:
+                7px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--green),
+                    var(--green-light)
+                );
+
+            color:
+                white;
+
+            text-decoration:
+                none;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                0.1px;
+
+            border:
+                1px solid
+                transparent;
+
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .card-button:hover {
+
+            background:
+                var(--green-dark);
+
+            box-shadow:
+                0 4px 9px
+                rgba(0, 79, 53, 0.18);
+        }
+
+
+        /* YELLOW BUTTON */
+
+        .yellow-button {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--yellow),
+                    #ffd95c
+                );
+
+            color:
+                var(--green-dark);
+
+            border:
+                1px solid
+                #efb900;
+        }
+
+
+        .yellow-button:hover {
+
+            background:
+                #f2bb00;
+
+            color:
+                var(--green-dark);
+        }
+
+
+        /* ==========================================
+           SECTION TITLE
+        ========================================== */
+
+        .section-header {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            margin:
+                27px 0 14px;
+        }
+
+
+        .section-title {
+
+            margin:
+                0;
+
+            font-size:
+                18px;
+
+            color:
+                var(--green-dark);
+        }
+
+
+        .section-line {
+
+            height:
+                1px;
+
+            background:
+                #cadfd1;
+
+            flex:
+                1;
+        }
+
+
+        /* ==========================================
+           COMING SOON
+        ========================================== */
+
+        .coming-soon {
+
+            background:
+                #f8faf9;
+
+            opacity:
+                0.78;
+        }
+
+
+        .coming-soon:hover {
+
+            transform:
+                none;
+
+            box-shadow:
+                0 4px 13px
+                rgba(0, 70, 45, 0.055);
+        }
+
+
+        .coming-label {
+
+            display:
+                inline-block;
+
+            text-align:
+                center;
+
+            width:
+                100%;
+
+            padding:
+                8px 10px;
+
+            border-radius:
+                7px;
+
+            background:
+                #eef1ef;
+
+            color:
+                #6d776f;
+
+            font-size:
+                11px;
+
+            font-weight:
+                700;
+
+            border:
+                1px solid
+                #dde4df;
+        }
+
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        footer {
+
+            margin-top:
+                15px;
+
+            background:
+                var(--green-dark);
+
+            color:
+                rgba(255, 255, 255, 0.88);
+
+            padding:
+                15px 25px;
+
+            text-align:
+                center;
+
+            font-size:
+                11px;
+
+            border-top:
+                3px solid
+                var(--yellow);
+        }
+
+
+        /* ==========================================
+           RESPONSIVE - LARGE LAPTOP
+        ========================================== */
+
+        @media
+        (max-width: 1200px) {
 
             .dashboard-grid {
+
                 grid-template-columns:
                     repeat(
-                        2,
-                        minmax(250px, 1fr)
+                        3,
+                        minmax(210px, 1fr)
                     );
             }
 
         }
 
-        @media (max-width: 700px) {
 
-            .header-inner {
-                flex-direction:
-                    column;
+        /* ==========================================
+           RESPONSIVE - TABLET
+        ========================================== */
+
+        @media
+        (max-width: 900px) {
+
+            .dashboard-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(210px, 1fr)
+                    );
+            }
+
+
+            .welcome {
 
                 align-items:
                     flex-start;
+
+                flex-direction:
+                    column;
             }
 
-            main {
+        }
+
+
+        /* ==========================================
+           RESPONSIVE - MOBILE
+        ========================================== */
+
+        @media
+        (max-width: 600px) {
+
+            .header-inner {
+
                 padding:
-                    25px 18px 45px;
+                    14px 17px;
             }
 
-            .dashboard-grid {
-                grid-template-columns:
-                    1fr;
+
+            .header-title h1 {
+
+                font-size:
+                    19px;
             }
 
-            .user-area {
+
+            .header-title p {
+
                 display:
                     none;
             }
 
+
+            .logo-box {
+
+                padding:
+                    8px 12px;
+
+                font-size:
+                    16px;
+            }
+
+
+            .user-area {
+
+                display:
+                    none;
+            }
+
+
+            main {
+
+                padding:
+                    20px 15px 35px;
+            }
+
+
+            .welcome h2 {
+
+                font-size:
+                    20px;
+            }
+
+
+            .dashboard-grid {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    12px;
+            }
+
+
+            .dashboard-card {
+
+                min-height:
+                    165px;
+            }
+
         }
+
 
     </style>
 
@@ -382,9 +868,9 @@
 <body>
 
 
-<!-- =========================
+<!-- ==========================================
      HEADER
-========================= -->
+========================================== -->
 
 <header>
 
@@ -395,6 +881,7 @@
             <div class="logo-box">
                 SUBWAY
             </div>
+
 
             <div class="header-title">
 
@@ -418,57 +905,76 @@
             Analytics Portal
         </div>
 
+
     </div>
 
 </header>
 
 
-<!-- =========================
+
+<!-- ==========================================
      MAIN
-========================= -->
+========================================== -->
 
 <main>
 
 
+    <!-- ======================================
+         WELCOME
+    ======================================= -->
+
     <section class="welcome">
 
-        <h2>
-            Analytics Dashboard
-        </h2>
+        <div>
 
-        <p>
-            Access Sales Analytics, Store Master,
-            Power BI reports and business performance
-            dashboards from one place.
-        </p>
+            <h2>
+                Analytics Dashboard
+            </h2>
+
+            <p>
+                Access business analytics,
+                store information and management
+                dashboards from one place.
+            </p>
+
+        </div>
 
     </section>
 
 
-    <!-- =========================
+
+    <!-- ======================================
          MAIN DASHBOARDS
-    ========================= -->
+    ======================================= -->
 
     <div class="dashboard-grid">
 
 
-        <!-- SALES ANALYTICS -->
+        <!-- ==================================
+             SALES ANALYTICS
+        =================================== -->
 
         <div class="dashboard-card">
 
-            <div class="card-icon">
-                📊
+            <div class="card-top">
+
+                <div class="card-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Sales Analytics
+                </h3>
+
             </div>
 
-            <h3>
-                Sales Analytics
-            </h3>
 
             <p>
-                Analyze Revenue, Bills, Discount,
-                Store Days, ADS, ADT, APC,
-                Channel performance and store performance.
+                Revenue, Orders, ADS, ADT, APC,
+                discounts, channels and store
+                performance analytics.
             </p>
+
 
             <a
                 class="card-button"
@@ -480,53 +986,69 @@
         </div>
 
 
-        <!-- STORE MASTER -->
+
+        <!-- ==================================
+             STORE MASTER
+        =================================== -->
 
         <div class="dashboard-card">
 
-            <div class="card-icon">
-                🏪
+            <div class="card-top">
+
+                <div class="card-icon">
+                    🏪
+                </div>
+
+                <h3>
+                    Store Master
+                </h3>
+
             </div>
 
-            <h3>
-                Store Master
-            </h3>
 
             <p>
-                View Store Code, Store Name,
-                Region, Circle, City, Type,
-                Format, Cohort, Status and
-                Area Manager details.
+                Store details, Region, Circle,
+                City, Format, Cohort, Status
+                and Area Manager.
             </p>
+
 
             <a
                 class="card-button yellow-button"
                 href="Storemaster.html"
             >
                 Open Store Master
-                
             </a>
 
         </div>
 
 
-        <!-- LABOR COST -->
+
+        <!-- ==================================
+             LABOR COST
+        =================================== -->
 
         <div class="dashboard-card">
 
-            <div class="card-icon">
-                👥
+            <div class="card-top">
+
+                <div class="card-icon">
+                    👥
+                </div>
+
+                <h3>
+                    Labor Cost
+                </h3>
+
             </div>
 
-            <h3>
-                Labor Cost
-            </h3>
 
             <p>
-                Analyze AOP vs Actual Labor Cost, ADS,
-                Ideal vs Actual FTE, manpower gaps,
-                Fixed and Variable LC and F&amp;F adjustments.
+                AOP vs Actual Labor Cost,
+                FTE analysis, manpower gaps
+                and labor performance.
             </p>
+
 
             <a
                 class="card-button"
@@ -538,26 +1060,36 @@
         </div>
 
 
-        <!-- POWER BI -->
+
+        <!-- ==================================
+             POWER BI
+        =================================== -->
 
         <div class="dashboard-card">
 
-            <div class="card-icon">
-                📈
+            <div class="card-top">
+
+                <div class="card-icon">
+                    📈
+                </div>
+
+                <h3>
+                    Power BI
+                </h3>
+
             </div>
 
-            <h3>
-                Power BI
-            </h3>
 
             <p>
-                Open your Power BI dashboards
-                and detailed management reports.
+                Access Power BI dashboards,
+                detailed reports and management
+                performance analytics.
             </p>
 
+
             <!--
-            Replace YOUR_POWER_BI_LINK
-            with your actual Power BI URL.
+                Replace YOUR_POWER_BI_LINK
+                with your actual Power BI URL
             -->
 
             <a
@@ -575,38 +1107,59 @@
     </div>
 
 
-    <!-- =========================
-         OTHER REPORTS
-    ========================= -->
 
-    <h2 class="section-title">
-        Business Reports
-    </h2>
+    <!-- ======================================
+         BUSINESS REPORTS TITLE
+    ======================================= -->
 
+    <div class="section-header">
+
+        <h2 class="section-title">
+            Business Reports
+        </h2>
+
+        <div class="section-line"></div>
+
+    </div>
+
+
+
+    <!-- ======================================
+         BUSINESS REPORT CARDS
+    ======================================= -->
 
     <div class="dashboard-grid">
 
 
-        <!-- PROFIT & LOSS -->
+        <!-- ==================================
+             PROFIT & LOSS
+        =================================== -->
 
         <div class="dashboard-card">
 
-            <div class="card-icon">
-                ₹
+            <div class="card-top">
+
+                <div class="card-icon">
+                    ₹
+                </div>
+
+                <h3>
+                    Profit & Loss
+                </h3>
+
             </div>
 
-            <h3>
-                Profit & Loss
-            </h3>
 
             <p>
-                Access Profit & Loss reporting
-                and financial performance analytics.
+                Financial performance,
+                profitability and detailed
+                Profit & Loss reporting.
             </p>
 
+
             <!--
-            Replace YOUR_PNL_LINK
-            with your actual P&L report URL.
+                Replace YOUR_PNL_LINK
+                with your actual P&L URL
             -->
 
             <a
@@ -621,22 +1174,31 @@
         </div>
 
 
-        <!-- COGS -->
+
+        <!-- ==================================
+             COGS ANALYTICS
+        =================================== -->
 
         <div class="dashboard-card coming-soon">
 
-            <div class="card-icon">
-                🧾
+            <div class="card-top">
+
+                <div class="card-icon">
+                    🧾
+                </div>
+
+                <h3>
+                    COGS Analytics
+                </h3>
+
             </div>
 
-            <h3>
-                COGS Analytics
-            </h3>
 
             <p>
-                Food cost, product cost and
-                COGS performance analytics.
+                Food cost, product cost
+                and COGS performance analytics.
             </p>
+
 
             <span class="coming-label">
                 Coming Soon
@@ -645,26 +1207,72 @@
         </div>
 
 
-        <!-- OPERATIONS -->
+
+        <!-- ==================================
+             OPERATIONS ANALYTICS
+        =================================== -->
 
         <div class="dashboard-card coming-soon">
 
-            <div class="card-icon">
-                ⚙️
+            <div class="card-top">
+
+                <div class="card-icon">
+                    ⚙️
+                </div>
+
+                <h3>
+                    Operations Analytics
+                </h3>
+
             </div>
 
-            <h3>
-                Operations Analytics
-            </h3>
 
             <p>
-                Store operations, productivity
-                and operational KPI analytics.
+                Store operations,
+                productivity and operational
+                KPI analytics.
             </p>
+
 
             <span class="coming-label">
                 Coming Soon
             </span>
+
+        </div>
+
+
+        <!-- ==================================
+             DATA UPLOAD
+        =================================== -->
+
+        <div class="dashboard-card">
+
+            <div class="card-top">
+
+                <div class="card-icon">
+                    ⬆️
+                </div>
+
+                <h3>
+                    Data Upload
+                </h3>
+
+            </div>
+
+
+            <p>
+                Upload master files and
+                supporting business data
+                for analytics processing.
+            </p>
+
+
+            <a
+                class="card-button yellow-button"
+                href="upload.html"
+            >
+                Open Upload
+            </a>
 
         </div>
 
@@ -675,13 +1283,15 @@
 </main>
 
 
-<!-- =========================
+
+<!-- ==========================================
      FOOTER
-========================= -->
+========================================== -->
 
 <footer>
 
-    Subway Insights |
+    Subway Insights
+    &nbsp; | &nbsp;
     Business Analytics Portal
 
 </footer>
